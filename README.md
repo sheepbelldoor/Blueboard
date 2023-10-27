@@ -1,3 +1,0 @@
-# Blueboard
-# Blueboard
-## software engineering

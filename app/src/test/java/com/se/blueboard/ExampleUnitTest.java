@@ -1,4 +1,4 @@
-package com.example.blueboard;
+package com.se.blueboard;
 
 import org.junit.Test;
 
