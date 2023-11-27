@@ -48,6 +48,7 @@ public class ProfilePage extends AppCompatActivity {
         // 2. bitmap 을 string으로 변환
         String imgString = bitmapToString(image);
         Log.d("Bitmap", imgString);
+
         // image test
 
         // TODO: LoginPage에서 id intent로 받아서 parameter 입력

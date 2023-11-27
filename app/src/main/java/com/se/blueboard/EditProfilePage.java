@@ -43,7 +43,6 @@ public class EditProfilePage extends AppCompatActivity {
         //setContentView(R.layout.edit_profile);
         EditProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.edit_profile);
 
-        ImageView image = findViewById(R.id.edit_image);
         Button uploadButton = findViewById(R.id.upload);
         Button saveButton = findViewById(R.id.save);
 
@@ -74,6 +73,12 @@ public class EditProfilePage extends AppCompatActivity {
                     EditText editKorName = findViewById(R.id.edit_kor_name);
                     EditText editEngName = findViewById(R.id.edit_eng_name);
                     EditText editMail = findViewById(R.id.edit_mail);
+                    String editProfile;
+
+                    if(imgString == null)
+                        editProfile = currentUser.getProfile();
+                    else
+                        editProfile = imgString;
 
                     // 비어있는 값이 있으면 에러 메시지 띄워주기
                     if(editKorName.length() == 0 || editEngName.length() == 0 || editMail.length() == 0)
@@ -82,7 +87,7 @@ public class EditProfilePage extends AppCompatActivity {
                         String editName = editKorName.getText().toString() + "/" + editEngName.getText().toString();
 
                         User editUser = User.makeUser(currentUser.getId(), currentUser.getAccountId(), editName, currentUser.getInstitution(),
-                                currentUser.getMajor(), editMail.getText().toString(), imgString, currentUser.getCourses(),
+                                currentUser.getMajor(), editMail.getText().toString(), editProfile, currentUser.getCourses(),
                                 currentUser.getSentMessages(), currentUser.getReceivedMessages(), currentUser.getAlarms(),
                                 currentUser.getGrade(), currentUser.getStudentId());
 
