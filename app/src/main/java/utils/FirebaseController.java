@@ -193,6 +193,7 @@ public class FirebaseController {
         examMap.put("detail", exam.getDetail());
         examMap.put("date", exam.getDate());
         examMap.put("location", exam.getLocation());
+        examMap.put("lectureId", exam.getLectureId());
 
         // Add data to "exams" collection
         db.collection("exams")
@@ -227,6 +228,7 @@ public class FirebaseController {
         postMap.put("detail", post.getDetail());
         postMap.put("uploadTime", post.getUploadTime());
         postMap.put("comments", post.getComments());
+        postMap.put("lectureId", post.getLectureId());
 
         // Add data to "posts" collection
         db.collection("posts")
@@ -262,6 +264,7 @@ public class FirebaseController {
         assignmentMap.put("uploadTime", assignment.getUploadTime());
         assignmentMap.put("deadline", assignment.getDeadline());
         assignmentMap.put("submissions", assignment.getSubmissions());
+        assignmentMap.put("lectureId", assignment.getLectureId());
 
         // Add data to "assignments" collection
         db.collection("assignments")
@@ -462,6 +465,7 @@ public class FirebaseController {
         announcementMap.put("files", announcement.getFiles());
         announcementMap.put("title", announcement.getTitle());
         announcementMap.put("comments", announcement.getComments());
+        announcementMap.put("lectureId", announcement.getLectureId());
 
         // Add data to "announcements" collection
         db.collection("announcements")
