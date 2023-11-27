@@ -22,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Base64;
+import java.util.regex.Pattern;
 
 import model.User;
 import utils.FirebaseController;
@@ -75,16 +76,26 @@ public class EditProfilePage extends AppCompatActivity {
                     EditText editMail = findViewById(R.id.edit_mail);
                     String editProfile;
 
+                    String strKorName = editKorName.getText().toString();
+                    String strEngName = editEngName.getText().toString();
+                    String strMail = editMail.getText().toString();
+
                     if(imgString == null)
                         editProfile = currentUser.getProfile();
                     else
                         editProfile = imgString;
 
+                    // 이메일 검증
+                    Pattern pattern = android.util.Patterns.EMAIL_ADDRESS;
+
                     // 비어있는 값이 있으면 에러 메시지 띄워주기
                     if(editKorName.length() == 0 || editEngName.length() == 0 || editMail.length() == 0)
                         util.showErrMsg(getApplicationContext(), "값을 모두 입력해주세요");
+                    else if(!util.lengthAvail(strKorName, 20) || !util.lengthAvail(strEngName, 20) || !pattern.matcher(strMail).matches()){
+                        util.showErrMsg(getApplicationContext(), "입력한 값이 올바른지 확인하세요");
+                    }
                     else{
-                        String editName = editKorName.getText().toString() + "/" + editEngName.getText().toString();
+                        String editName = strKorName + "/" + strEngName;
 
                         User editUser = User.makeUser(currentUser.getId(), currentUser.getAccountId(), editName, currentUser.getInstitution(),
                                 currentUser.getMajor(), editMail.getText().toString(), editProfile, currentUser.getCourses(),

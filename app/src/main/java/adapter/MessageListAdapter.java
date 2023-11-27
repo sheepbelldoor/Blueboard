@@ -41,11 +41,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
             content = v.findViewById(R.id.Content);
             blueCircle = v.findViewById(R.id.Blue_Circle);
 
-            v.setOnClickListener(view -> {
-                Message clickedMessage = mDataset.get(getBindingAdapterPosition());
-                String messageId = clickedMessage.getId();
-                Utils.gotoPage(mContext, MessageViewPage.class, messageId);
-            });
+//            v.setOnClickListener(view -> {
+//                Message clickedMessage = mDataset.get(getBindingAdapterPosition());
+//                String messageId = clickedMessage.getId();
+//                Utils.gotoPage(mContext, MessageViewPage.class, messageId);
+//            });
         }
     }
     // 배열 데이터를 받는 생성자
