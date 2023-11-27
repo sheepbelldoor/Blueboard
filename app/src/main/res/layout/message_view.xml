@@ -77,14 +77,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="To or Send"
         android:layout_marginLeft="75dp"
-        android:layout_marginBottom="18dp"
+        android:text="To or Send"
         android:textColor="#000000"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
-        app:layout_constraintStart_toStartOf="@+id/imageViewProfile" />
+        app:layout_constraintStart_toStartOf="@+id/imageViewProfile"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
 
     <!-- 발신자/수신자 이름 -->
     <TextView
@@ -92,13 +92,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="18dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="5dp"
+        android:ellipsize="end"
+        android:maxLength="10"
         android:text="발신자/수신자"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
-        app:layout_constraintStart_toEndOf="@+id/textViewSenderOrReceiver" />
+        app:layout_constraintStart_toEndOf="@+id/textViewSenderOrReceiver"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
 
     <!-- 날짜 -->
     <TextView
@@ -106,12 +108,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="18dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:text="날짜"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
-        app:layout_constraintStart_toEndOf="@+id/textViewPersonName" />
+        app:layout_constraintStart_toEndOf="@+id/textViewPersonName"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
 
     <Button
         android:id="@+id/icon_reply"
@@ -120,6 +122,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/icon_reply"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
 
     <Button

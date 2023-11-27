@@ -62,6 +62,7 @@ public class Message {
     public void setRead() {
         // 읽은 메시지로 표시
         // TODO: implement
+        this.isRead = true;
     }
 
     public void saveFileToLocal(String fileName) {

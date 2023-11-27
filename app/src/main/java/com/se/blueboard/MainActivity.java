@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         sent.add("2");
         List<String> received = new ArrayList<>();
         received.add("1");
-        loginUser = User.makeUser("abc2", "test22222", "짱구", "test", "test", "test", "test", courses, sent, received, null, 1, 1, 1);
+        loginUser = User.makeUser("abc1", "test22222", "짱구", "test", "test", "test", "test", courses, sent, received, null, 1, 1, 1);
 
         // Firestore test
         Button firestoreButton = findViewById(R.id.firestore);
