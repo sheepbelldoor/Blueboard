@@ -41,6 +41,7 @@
         <activity android:name=".NotificationPage" />
         <activity android:name=".Create" />
         <activity android:name=".UploadContentPage" />
+        <activity android:name=".AnnouncementIn" />
         <activity android:name=".makeLecture.MakeLecturePageOne" />
         <activity android:name=".makeLecture.MakeLecturePageTwo" />
         <activity android:name=".makeLecture.MakeLecturePageThree" />

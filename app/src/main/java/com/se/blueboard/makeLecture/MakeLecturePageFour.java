@@ -1,5 +1,6 @@
 package com.se.blueboard.makeLecture;
 
+import static com.se.blueboard.HomePage.currentUser;
 import static com.se.blueboard.makeLecture.MakeLecturePageOne.makingLecture;
 
 import android.os.Bundle;
@@ -137,7 +138,7 @@ public class MakeLecturePageFour extends AppCompatActivity {
                 @Override
                 public void onSuccess(Object object) {
                     User user = (User) object;
-                    if (user.getCourses().contains(lecture.getId()))
+                    if (!user.getCourses().contains(lecture.getId()))
                         user.addCourses(lecture.getId());
                     controller.updateData(user);
                 }
@@ -154,7 +155,7 @@ public class MakeLecturePageFour extends AppCompatActivity {
                 @Override
                 public void onSuccess(Object object) {
                     User user = (User) object;
-                    if (user.getCourses().contains(lecture.getId()))
+                    if (!user.getCourses().contains(lecture.getId()))
                         user.addCourses(lecture.getId());
                     controller.updateData(user);
                 }
@@ -169,7 +170,7 @@ public class MakeLecturePageFour extends AppCompatActivity {
             @Override
             public void onSuccess(Object object) {
                 User user = (User) object;
-                if (user.getCourses().contains(lecture.getId()))
+                if (!user.getCourses().contains(lecture.getId()))
                     user.addCourses(lecture.getId());
                 controller.updateData(user);
 

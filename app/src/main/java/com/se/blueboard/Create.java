@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,11 +27,17 @@ import model.User;
 import utils.FirebaseController;
 import utils.Utils;
 
-import android.widget.Button;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -38,6 +47,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
+
+import java.lang.reflect.Array;
 
 public class Create extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -61,7 +72,11 @@ public class Create extends AppCompatActivity {
 
     private String newInst;
     private String newDept;
-    private String newIsMg;
+    private int newIsMg;
+
+    private Spinner spinner;
+    private Spinner spinner2;
+    private Spinner spinner3;
 
 
 
@@ -72,15 +87,15 @@ public class Create extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
+//spinner
+    spinner = (Spinner)findViewById(R.id.select_institute);
+    spinner2 = (Spinner)findViewById(R.id.select_dept);
+    spinner3 = (Spinner)findViewById(R.id.select_isMg);
 
-        Spinner spinner = (Spinner)findViewById(R.id.select_institute);
-        newInst = spinner.getSelectedItem().toString();
-
-        Spinner spinner2 = (Spinner)findViewById(R.id.select_dept);
-        newDept = spinner2.getSelectedItem().toString();
-
-        Spinner spinner3 = (Spinner)findViewById(R.id.select_isMg);
-        newIsMg = spinner3.getSelectedItem().toString();
+    spinner.setOnItemSelectedListener(myListener);
+    spinner2.setOnItemSelectedListener(myListener);
+    spinner3.setOnItemSelectedListener(myListener);
+//spinner
 
         newID = (EditText) findViewById(R.id.square_id);
         newPW = (EditText) findViewById(R.id.square_pw);
@@ -94,7 +109,7 @@ public class Create extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createAccount(
-                        newID.getText().toString(), newPW.getText().toString(), newCheckPW.getText().toString(), newName.getText().toString(), newInst, newDept, newGrade.getText().toString(), newNum.getText().toString(), Integer.parseInt(newIsMg)
+                        newID.getText().toString(), newPW.getText().toString(), newCheckPW.getText().toString(), newName.getText().toString(), newInst, newDept, newGrade.getText().toString(), newNum.getText().toString(), newIsMg
                 );
             }
         });
@@ -105,7 +120,38 @@ public class Create extends AppCompatActivity {
         });
     }
 
+    OnItemSelectedListener myListener = new OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            switch(parent.getId()){
+                case R.id.select_institute:
+                    newInst = parent.getSelectedItem().toString();
+                    break;
+                case R.id.select_dept:
+                    newDept = parent.getSelectedItem().toString();
+                    break;
+                case R.id.select_isMg:
+                    String tmp = parent.getSelectedItem().toString();
+                    if(tmp.equals("O")){
+                        newIsMg = 1;
+                    }
+                    else{
+                        newIsMg = 0;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
     private void createAccount(String id, String pw, String checkpw, String name, String inst, String dept, String grd, String num, int isManager) {
+
 
         verifyStoragePermissions(this);
 
@@ -148,6 +194,7 @@ public class Create extends AppCompatActivity {
                                     Toast.makeText(
                                             getApplicationContext(), "회원가입이 완료되었습니다. 로그인 화면으로 돌아가 로그인하세요.", Toast.LENGTH_SHORT
                                     ).show();
+                                    //Log.d("checkIsMg", String.valueOf(isManager));
                                     Utils.gotoPage(getApplicationContext(), LoginPage.class, null);
                                 }
                             }
@@ -177,4 +224,6 @@ public class Create extends AppCompatActivity {
             );
         }
     }
+
+
 }

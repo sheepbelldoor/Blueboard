@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name = "ins_array">
-        <item>1대학</item>
-        <item>2대학</item>
-        <item>3대학</item>
-        <item>4대학</item>
-        <item>5대학</item>
+        <item>1대학교</item>
+        <item>2대학교</item>
+        <item>3대학교</item>
+        <item>4대학교</item>
+        <item>5대학교</item>
     </string-array>
 
     <string-array name="dept_array">
@@ -17,8 +17,8 @@
     </string-array>
 
     <string-array name="mg_array">
-        <item>0</item>
-        <item>1</item>
+        <item>O</item>
+        <item>X</item>
     </string-array>
 
 </resources>

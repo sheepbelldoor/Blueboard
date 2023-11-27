@@ -54,7 +54,12 @@ public class User {
                                 String major, String email, String profile, List<String> courses,
                                 List<String> sentMessages, List<String> receivedMessages,
                                 List<String> alarms, int grade, long studentId, int isManager) {
-        List<String> received, sent;
+        List<String> lecture, received, sent;
+
+        if (courses == null)
+            lecture = new ArrayList<>();
+        else
+            lecture = courses;
 
         if(receivedMessages == null) {
             received = new ArrayList<>();
@@ -70,7 +75,7 @@ public class User {
             sent = sentMessages;
         }
 
-        return new User(id, accountId, name, institution, major, email, profile, courses, sent, received, alarms, grade, studentId, isManager);
+        return new User(id, accountId, name, institution, major, email, profile, lecture, sent, received, alarms, grade, studentId, isManager);
     }
 
     // Methods
@@ -174,4 +179,6 @@ public class User {
     public void addCourses(String id) {
         this.courses.add(id);
     }
+
+    public void setId(String id) { this.id = id; }
 }

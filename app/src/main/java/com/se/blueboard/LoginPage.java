@@ -1,5 +1,7 @@
 package com.se.blueboard;
 
+import static com.se.blueboard.HomePage.currentUser;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -111,7 +113,8 @@ public class LoginPage extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                                             }
                                             else {
-                                                    Utils.gotoPage(getApplicationContext(), HomePage.class, id);
+                                                currentUser.setId(id);
+                                                Utils.gotoPage(getApplicationContext(), HomePage.class, id);
                                             }
                                         } else {
 
