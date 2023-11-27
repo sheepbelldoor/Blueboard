@@ -57,4 +57,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/announcement_search" />
+
+
+    <ImageButton
+        android:id="@+id/pen_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="right"
+        android:src="@drawable/icon_pen"
+        android:background="@color/white"
+        />
+
+
 </LinearLayout>

@@ -5,8 +5,10 @@ import static utils.Utils.gotoPage;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import java.util.Date;
 import adapter.AnnouncementAdapter;
 import model.Announcement;
 import utils.FirebaseController;
+import utils.Utils;
 
 public class AnnouncementPage extends AppCompatActivity {
 
@@ -27,8 +30,11 @@ public class AnnouncementPage extends AppCompatActivity {
     private ListView listView;
     private AnnouncementAdapter adapter;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.announcement);
 
@@ -52,12 +58,14 @@ public class AnnouncementPage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Announcement clickedAnnouncement = (Announcement) adapter.getItem(i);
-                gotoPage(getApplicationContext(), AnnouncementIn.class);
+                Utils.gotoPage(getApplicationContext(), AnnouncementIn.class, null);
             }
         });
 
-
-
+        ImageButton postButton = findViewById(R.id.pen_button);
+        postButton.setOnClickListener(view->{
+            Utils.gotoPage(getApplicationContext(), UploadContentPage.class, null);
+        });
 
 
     }
