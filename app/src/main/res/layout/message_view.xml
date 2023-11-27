@@ -1,142 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/message_view_"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToOutline="true"
-    android:background="#FFFFFF">
-
-    <!-- Auto layout, variables, and unit scale are not yet supported -->
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/navigationb"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:background="#CCFFFFFF"
-        >
+    android:background="#FFFFFF"
+    android:gravity="center"
+    app:layout_constraintCircleRadius="10dp">
 
         <!-- 뒤로가기 버튼 -->
-        <Button
-            android:id="@+id/icon_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/icon_back"
-            />
+    <Button
+        android:id="@+id/icon_back"
+        android:contentDescription="뒤로가기"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 쓰레기통 아이콘 -->
         <Button
             android:id="@+id/icon_delete"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:contentDescription="메시지 삭제"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/icon_delete" />
-
-    </RelativeLayout>
 
     <!-- 제목 -->
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/navigationb"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:text="제목"
-        android:textSize="22sp"
         android:textColor="#000000"
-        android:textStyle="bold" />
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_back" />
 
-    <!-- 과목명 텍스트 -->
+    <!-- 프로필 사진 (동그라미) -->
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/profile_circle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+    <!-- 발신자인지 수신자인지 -->
     <TextView
-        android:id="@+id/textViewSubject"
+        android:id="@+id/textViewSenderOrReceiver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/navigationb"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/textViewTitle"
-        android:text="과목명"
-        android:textSize="12sp" />
+        android:layout_alignParentTop="true"
+        android:text="To or Send"
+        android:layout_marginLeft="75dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
+        app:layout_constraintStart_toStartOf="@+id/imageViewProfile" />
 
-    <RelativeLayout
-        android:id="@+id/infob"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_below="@+id/textViewTitle"
+    <!-- 발신자/수신자 이름 -->
+    <TextView
+        android:id="@+id/textViewPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:text="발신자/수신자"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
+        app:layout_constraintStart_toEndOf="@+id/textViewSenderOrReceiver" />
+
+    <!-- 날짜 -->
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:text="날짜"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
+        app:layout_constraintStart_toEndOf="@+id/textViewPersonName" />
+
+    <Button
+        android:id="@+id/icon_reply"
+        android:contentDescription="메시지 답장"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:background="#CCFFFFFF">
-
-        <!-- 프로필 사진 (동그라미) -->
-        <ImageView
-            android:id="@+id/imageViewProfile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/profile_circle" />
-
-        <!-- 발신자 이름 -->
-        <TextView
-            android:id="@+id/textViewSenderName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="18dp"
-            android:text="발신자"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <!-- 날짜 -->
-        <TextView
-            android:id="@+id/textViewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="18dp"
-            android:layout_toEndOf="@+id/textViewSenderName"
-            android:text="날짜"
-            android:textSize="13sp" />
-
-        <Button
-            android:id="@+id/icon_reply"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="37dp"
-            android:background="@drawable/icon_reply" />
-
-        <Button
-            android:id="@+id/icon_more"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="37dp"
-            android:background="@drawable/icon_more" />
-
-    </RelativeLayout>
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/icon_reply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
 
     <!-- 얇은 선 -->
     <View
         android:id="@+id/dividerLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/infob"
-        android:layout_marginTop="10dp"
-        android:background="#CCCCCC" />
+        android:background="#CCCCCC"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
 
     <!-- 메시지 내용 -->
     <TextView
@@ -144,68 +129,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dividerLine"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:text="메시지 내용"
         android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerLine" />
 
 
     <!-- 하단 바 -->
-    <Button
-        android:id="@+id/icon_home"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/icon_home" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navigation_menu" >
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <Button
-        android:id="@+id/icon_notification"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="224dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/icon_notification" />
-
-    <Button
-        android:id="@+id/icon_person"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="320dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/icon_person" />
-
-    <TextView
-        android:id="@+id/unread_num"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_above="@+id/icon_mail"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="152dp"
-        android:layout_marginBottom="-20dp"
-        android:background="@drawable/icon_circle"
-        android:gravity="center"
-        android:text="3"
-        android:textColor="#000000"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/icon_mail"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="124dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/icon_mail" />
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

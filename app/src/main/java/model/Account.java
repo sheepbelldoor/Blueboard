@@ -20,16 +20,23 @@ public class Account {
     }
 
     // Named Constructor
-    public static Account makeAccount() {
+    public static Account makeAccount(){
         // named constructor
+        return new Account();
+    }
+    public static Account makeAccount(String uid, String aid, String pw) {
+
         // TODO: implement
-        return new Account(null, null, null, false, 0);
+
+        return new Account(uid, aid, pw, false, 0);
     }
 
     // Methods
     public boolean login() {
         // DB에 id, pw 있는지 확인
         // TODO: implement
+
+
         return false; // 로그인 성공 시 true, 실패 시 false 반환
     }
 

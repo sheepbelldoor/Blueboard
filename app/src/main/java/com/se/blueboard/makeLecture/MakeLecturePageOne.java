@@ -1,5 +1,7 @@
 package com.se.blueboard.makeLecture;
 
+import static com.se.blueboard.HomePage.currentUser;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,12 +36,12 @@ public class MakeLecturePageOne extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lectureList);
 
         // Test List-------------------------------------
-        lectureList.add("14235\tSoftwareEngineering");
-        lectureList.add("24682\tasdfaefsdfase");
-        lectureList.add("73152\taccgdhdujkyfg");
-        lectureList.add("46452\tfu");
-        lectureList.add("84231\tawefdhcv");
-        lectureList.add("76431\tqrsuikg");
+        lectureList.add("14235\tSoftware Engineering");
+        lectureList.add("24682\tAlgorithm");
+        lectureList.add("73152\tAI");
+        lectureList.add("46452\tCompiler");
+        lectureList.add("84231\tComputer Network");
+        lectureList.add("76431\tOOP");
         //-----------------------------------------------
 
         // Set search view
@@ -76,14 +78,14 @@ public class MakeLecturePageOne extends AppCompatActivity {
                 String[] temp = selectedLecture.split("\t");
                 makingLecture.setId(temp[0]);
                 makingLecture.setName(temp[1]);
-                Utils.gotoPage(getApplicationContext(), MakeLecturePageTwo.class);
+                Utils.gotoPage(getApplicationContext(), MakeLecturePageTwo.class, null);
             }
         });
     }
 
     // TODO: managerId 해당 유저 아이디로 설정해야 함.
     public void initMakingLecture() {
-        makingLecture = Lecture.makeLecture("NONE", "NONE", "16", "2023123456", "40", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        makingLecture = Lecture.makeLecture("NONE", "NONE", "16", currentUser.getId(), "40", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
 }

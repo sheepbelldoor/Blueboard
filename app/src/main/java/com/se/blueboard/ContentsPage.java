@@ -63,7 +63,7 @@ public class ContentsPage extends AppCompatActivity {
         attendanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.gotoPage(getApplicationContext(), AttendancePage.class);
+                Utils.gotoPage(getApplicationContext(), AttendancePage.class, null);
             }
         });
     }

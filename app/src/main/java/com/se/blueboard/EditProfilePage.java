@@ -89,13 +89,13 @@ public class EditProfilePage extends AppCompatActivity {
                         User editUser = User.makeUser(currentUser.getId(), currentUser.getAccountId(), editName, currentUser.getInstitution(),
                                 currentUser.getMajor(), editMail.getText().toString(), editProfile, currentUser.getCourses(),
                                 currentUser.getSentMessages(), currentUser.getReceivedMessages(), currentUser.getAlarms(),
-                                currentUser.getGrade(), currentUser.getStudentId());
+                                currentUser.getGrade(), currentUser.getStudentId(), currentUser.getIsManager());
 
                         controller.sendUserData(editUser);
                         Log.d("EditProfile", "sendUserData");
 
                         // 프로필 페이지로 이동
-                        Utils.gotoPage(getApplicationContext(), ProfilePage.class);
+                        Utils.gotoPage(getApplicationContext(), ProfilePage.class, null);
                     }
                 });
             }
@@ -108,7 +108,7 @@ public class EditProfilePage extends AppCompatActivity {
 
         Button homeButton = findViewById(R.id.icon_home);
         homeButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), HomePage.class);
+            Utils.gotoPage(getApplicationContext(), HomePage.class, null);
         });
 
         // TODO: 아이콘 클릭 시 메시지, 알림 페이지 이동

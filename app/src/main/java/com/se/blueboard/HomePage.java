@@ -99,7 +99,7 @@ public class HomePage extends AppCompatActivity {
         // 강의 생성 버튼
         Button makeLectureButton = findViewById(R.id.main_makeLecture);
         makeLectureButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), MakeLecturePageOne.class);
+            Utils.gotoPage(getApplicationContext(), MakeLecturePageOne.class, null);
         });
     }
 }

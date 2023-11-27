@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -23,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/makeLecture_gotoBackThree"
+        android:id="@+id/makeLecture_gotoBackFour"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +59,7 @@
         android:layout_margin="18dp"
         android:fontFamily="@font/roboto_black"
         android:padding="5dp"
-        android:text="관리자"
+        android:text="수강인원"
         android:textColor="#0A0B0B"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +79,7 @@
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_vertical"
         android:paddingHorizontal="20dp"
-        android:text="관리자"
+        android:text="수강인원"
         android:textColor="#000000"
         android:textSize="16sp"
 
@@ -93,7 +92,7 @@
 
     <!--  수강 인원 수  -->
     <TextView
-        android:id="@+id/makeLecture_managers"
+        android:id="@+id/makeLecture_learningStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -101,7 +100,7 @@
         android:fontFamily="@font/roboto_bold"
         android:gravity="right"
         android:paddingHorizontal="20dp"
-        android:text="current"
+        android:text="current/max"
 
         android:textColor="#000000"
         android:textSize="16sp"
@@ -113,49 +112,49 @@
         app:layout_constraintVertical_bias="0.526" />
 
     <SearchView
-        android:id="@+id/makeLecture_searchManager"
+        android:id="@+id/makeLecture_searchStudent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="35dp"
         android:background="#EEEEEF"
+        app:layout_constraintBottom_toTopOf="@+id/makeLecture_makeLectureButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/makeLecture_lectureHeader"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        app:layout_constraintBottom_toTopOf="@+id/makeLecture_nextPageFour"
+        app:layout_constraintBottom_toTopOf="@+id/makeLecture_makeLectureButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/makeLecture_searchManager">
+        app:layout_constraintTop_toBottomOf="@+id/makeLecture_searchStudent">
 
         <ListView
-            android:id="@+id/makeLecture_setManagers"
+            android:id="@+id/makeLecture_setStudents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp" />
     </LinearLayout>
 
-    <!--  다음 버튼  -->
+    <!--  생성 버튼  -->
     <Button
-        android:id="@+id/makeLecture_nextPageFour"
+        android:id="@+id/makeLecture_makeLectureButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
         android:background="@drawable/make_lecture_button"
         android:fontFamily="@font/roboto_bold"
-        android:text="다음"
+        android:text="생성"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/makeLecture_searchManager"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

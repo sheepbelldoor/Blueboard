@@ -33,27 +33,27 @@ public class LecturePage extends AppCompatActivity {
                 // Home button
                 Button homeButton = findViewById(R.id.goto_main);
                 homeButton.setOnClickListener(view -> {
-                    Utils.gotoPage(getApplicationContext(), HomePage.class);
+                    Utils.gotoPage(getApplicationContext(), HomePage.class, null);
                 });
                 // Announcement button
                 Button announcementButton = findViewById(R.id.goto_announcement);
                 announcementButton.setOnClickListener(view -> {
-                    Utils.gotoPage(getApplicationContext(), AnnouncementPage.class);
+                    Utils.gotoPage(getApplicationContext(), AnnouncementPage.class, null);
                 });
                 // User & Group button
                 Button userGroupButton = findViewById(R.id.goto_userGroup);
                 userGroupButton.setOnClickListener(view -> {
-                    Utils.gotoPage(getApplicationContext(), GroupsPage.class);
+                    Utils.gotoPage(getApplicationContext(), GroupsPage.class, null);
                 });
                 // LectureContents button
                 Button lectureContentsButton = findViewById(R.id.goto_lectureContents);
                 lectureContentsButton.setOnClickListener(view -> {
-                    Utils.gotoPage(getApplicationContext(), ContentsPage.class);
+                    Utils.gotoPage(getApplicationContext(), ContentsPage.class, null);
                 });
                 // Attendance button
                 Button attendanceButton = findViewById(R.id.goto_attendance);
                 attendanceButton.setOnClickListener(view -> {
-                    Utils.gotoPage(getApplicationContext(), AttendancePage.class);
+                    Utils.gotoPage(getApplicationContext(), AttendancePage.class, null);
                 });
             }
 

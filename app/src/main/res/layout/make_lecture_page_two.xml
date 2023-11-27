@@ -108,43 +108,9 @@
         app:layout_constraintTop_toTopOf="@+id/makeLecture_weeks"
         app:layout_constraintVertical_bias="1.0" />
 
-    <!--  관리자 추가 기능 구현해야 함  -->
-    <TextView
-        android:id="@+id/makeLecture_admin"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/make_lecture_square"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="20dp"
-        android:text="관리자"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/makeLecture_weeks"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/makeLecture_adminButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
-        android:fontFamily="@font/palanquin_regular"
-        android:text="추가"
-        android:textColor="#0478FF"
-        android:textSize="16sp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/makeLecture_admin"
-        app:layout_constraintEnd_toEndOf="@+id/makeLecture_admin"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/makeLecture_admin"
-        app:layout_constraintTop_toTopOf="@+id/makeLecture_admin" />
 
     <!--  수강 가능 인원  -->
+
     <TextView
         android:id="@+id/makeLecture_maxUsers"
         android:layout_width="match_parent"
@@ -161,8 +127,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/makeLecture_admin"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/makeLecture_weeksEditText"
+        app:layout_constraintVertical_bias="0.025" />
 
     <EditText
         android:id="@+id/makeLecture_maxUsersEditText"
@@ -221,6 +187,7 @@
         android:id="@+id/makeLecture_gotoThree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/make_lecture_button"
         android:fontFamily="@font/roboto_bold"
         android:text="다음"
@@ -229,6 +196,6 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/makeLecture_uploadFile" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

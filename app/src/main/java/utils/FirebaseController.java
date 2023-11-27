@@ -68,6 +68,7 @@ public class FirebaseController {
         userMap.put("alarms", user.getAlarms());
         userMap.put("grade", user.getGrade());
         userMap.put("studentId", user.getStudentId());
+        userMap.put("isManager", user.getIsManager());
 
         // Add data to "users" collection
         db.collection("users")

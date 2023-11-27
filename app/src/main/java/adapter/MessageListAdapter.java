@@ -2,6 +2,7 @@ package adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.se.blueboard.MainActivity;
 import com.se.blueboard.MessageSendPage;
+import com.se.blueboard.MessageViewPage;
 import com.se.blueboard.R;
 
 import java.text.SimpleDateFormat;
@@ -19,25 +21,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Message;
+import model.User;
+import utils.FirebaseController;
+import utils.MyCallback;
 import utils.Utils;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.MyViewHolder> {
     private Context mContext;
     private List<Message> mDataset = new ArrayList<>();
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView sender, subject, date, content;
+        public TextView person, subject, date, content;
         public ImageView blueCircle;
 
         public MyViewHolder(View v) {
             super(v);
-            sender = v.findViewById(R.id.Sender);
+            person = v.findViewById(R.id.Sender);
             subject = v.findViewById(R.id.Subject);
             date = v.findViewById(R.id.Date);
             content = v.findViewById(R.id.Content);
             blueCircle = v.findViewById(R.id.Blue_Circle);
 
             v.setOnClickListener(view -> {
-                Utils.gotoPage(mContext, MessageSendPage.class);
+                Message clickedMessage = mDataset.get(getBindingAdapterPosition());
+                String messageId = clickedMessage.getId();
+                Utils.gotoPage(mContext, MessageViewPage.class, messageId);
             });
         }
     }
@@ -66,7 +73,35 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yy");
         Message myMessage = mDataset.get(position);
 
-        holder.sender.setText(myMessage.getSenderId());
+        FirebaseController controller = new FirebaseController();
+        if(myMessage.getSenderId().equals(MainActivity.loginUser.getId())){
+            controller.getUserData(myMessage.getReceiverId(), new MyCallback() {
+                @Override
+                public void onSuccess(Object object) {
+                    User receiver = (User) object;
+                    holder.person.setText(receiver.getName());
+                }
+
+                @Override
+                public void onFailure(Exception e) {
+                    Log.d("MessageListAdapter receiver", e.getMessage());
+                }
+            });
+        }
+        else{
+            controller.getUserData(myMessage.getSenderId(), new MyCallback() {
+                @Override
+                public void onSuccess(Object object) {
+                    User sender = (User) object;
+                    holder.person.setText(sender.getName());
+                }
+
+                @Override
+                public void onFailure(Exception e) {
+                    Log.d("MessageListAdapter sender", e.getMessage());
+                }
+            });
+        }
         holder.subject.setText(myMessage.getTitle());
         holder.date.setText(newFormat.format(myMessage.getDate()));
         holder.content.setText(myMessage.getContent());
@@ -75,7 +110,6 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         else
             holder.blueCircle.setVisibility(View.VISIBLE);
     }
-
     @Override
     public int getItemCount() {
         return mDataset.size();

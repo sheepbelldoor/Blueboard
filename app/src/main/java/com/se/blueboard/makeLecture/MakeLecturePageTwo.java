@@ -28,7 +28,7 @@ public class MakeLecturePageTwo extends AppCompatActivity {
         // 뒤로 가기 버튼
         Button backButton = findViewById(R.id.makeLecture_gotoBack);
         backButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), MakeLecturePageOne.class);
+            Utils.gotoPage(getApplicationContext(), MakeLecturePageOne.class, null);
         });
 
         // Current Lecture
@@ -37,14 +37,6 @@ public class MakeLecturePageTwo extends AppCompatActivity {
         // 학습 주차 - 양식 체크 구현 필요
         EditText weeks = (EditText) findViewById(R.id.makeLecture_weeksEditText);
         weeks.setText(makingLecture.getWeeks());
-
-
-        // 관리자 추가 버튼 구현 필요
-        ArrayList<String> adminList = new ArrayList();
-        Button addAdminButton = (Button) findViewById(R.id.makeLecture_adminButton);
-        addAdminButton.setOnClickListener(view -> {
-            Utils.toastTest(getApplicationContext(), "addAdminList");
-        });
 
         // 수강 가능 인원 - 양식 체크 구현 필요
         EditText maxUsers = (EditText) findViewById(R.id.makeLecture_maxUsersEditText);
@@ -62,7 +54,7 @@ public class MakeLecturePageTwo extends AppCompatActivity {
         nextButton.setOnClickListener(view -> {
             makingLecture.setWeeks(weeks.getText().toString());
             makingLecture.setMaxStudents(maxUsers.getText().toString());
-            Utils.gotoPage(getApplicationContext(), MakeLecturePageThree.class);
+            Utils.gotoPage(getApplicationContext(), MakeLecturePageThree.class, null);
         });
 
     }

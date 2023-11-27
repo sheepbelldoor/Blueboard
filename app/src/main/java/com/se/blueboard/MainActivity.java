@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         sent.add("2");
         List<String> received = new ArrayList<>();
         received.add("1");
-        loginUser = User.makeUser("abc2", "test22222", "짱구", "test", "test", "test", "test", courses, sent, received, null, 1, 1 );
+        loginUser = User.makeUser("abc2", "test22222", "짱구", "test", "test", "test", "test", courses, sent, received, null, 1, 1, 1);
 
         // Firestore test
         Button firestoreButton = findViewById(R.id.firestore);
@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
             listA.add("t1");
             listA.add("t2");
 
-            User user = new User("abc1", "test", "test", "test", "test", "test", "test", listA, null, null, null, 1, 1);
+            User user = new User("abc5", "test", "test", "test", "test", "test", "test", listA, null, null, null, 1, 1, 1);
+            // User user = new User("abc1", "test", "test", "test", "test", "test", "test", listA, null, null, null, 1, 1, 1);
             FirebaseController controller = new FirebaseController();
             Message m1 = Message.makeMessage("1", "abc2", "abc5", "과제 안내", "과제가 일주일 연장 되었습니다.", new Date(), null, null, true);
             controller.sendMessageData(m1);
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             // delete test
             // controller.deleteData("users", "abc1");
             // send test
-//            controller.sendUserData(user);
+            //controller.sendUserData(user);
             // get test
 //            controller.getUserData("abc1", new MyCallback() {
 //                @Override
@@ -106,56 +107,56 @@ public class MainActivity extends AppCompatActivity {
         // Login button
         Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), LoginPage.class);
+            Utils.gotoPage(getApplicationContext(), LoginPage.class, null);
         });
 
         // Announcement button
         Button announcementButton = findViewById(R.id.announcement);
         announcementButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), AnnouncementPage.class);
+            Utils.gotoPage(getApplicationContext(), AnnouncementPage.class, null);
 
         });
 
         // Attendance button
         Button attendanceButton = findViewById(R.id.attendance);
         attendanceButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), AttendancePage.class);
+            Utils.gotoPage(getApplicationContext(), AttendancePage.class, null);
         });
 
         // Contents button
         Button contentsButton = findViewById(R.id.contents);
         contentsButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), ContentsPage.class);
+            Utils.gotoPage(getApplicationContext(), ContentsPage.class, null);
         });
 
         // Groups button
         Button groupsButton = findViewById(R.id.groups);
         groupsButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), GroupsPage.class);
+            Utils.gotoPage(getApplicationContext(), GroupsPage.class, null);
         });
 
         // Home button
         Button homeButton = findViewById(R.id.home);
         homeButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), HomePage.class);
+            Utils.gotoPage(getApplicationContext(), HomePage.class, null);
         });
 
         // Lecture button
         Button lectureButton = findViewById(R.id.lecture);
         lectureButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), LecturePage.class);
+            Utils.gotoPage(getApplicationContext(), LecturePage.class, null);
         });
 
         // Message button
         Button messageButton = findViewById(R.id.message);
         messageButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), MessageBoxPage.class);
+            Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
         });
 
         // Profile button
         Button profileButton = findViewById(R.id.profile);
         profileButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), ProfilePage.class);
+            Utils.gotoPage(getApplicationContext(), ProfilePage.class, null);
         });
 
         Button pushButton = findViewById(R.id.push);

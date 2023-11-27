@@ -92,19 +92,19 @@ public class ProfilePage extends AppCompatActivity {
         // 개인정보 수정 버튼
         Button editButton = findViewById(R.id.edit);
         editButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), EditProfilePage.class);
+            Utils.gotoPage(getApplicationContext(), EditProfilePage.class, null);
         });
 
         // 홈 버튼
         Button homeButton = findViewById(R.id.icon_home);
         homeButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), HomePage.class);
+            Utils.gotoPage(getApplicationContext(), HomePage.class, null);
         });
 
         // 알림 버튼
         Button notiButton = findViewById(R.id.icon_notification);
         notiButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), NotificationPage.class);
+            Utils.gotoPage(getApplicationContext(), NotificationPage.class, null);
         });
 
         // 메시지 이동

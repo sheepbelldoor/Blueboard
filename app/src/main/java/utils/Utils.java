@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.content.Intent;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,17 +17,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.se.blueboard.MessagePage;
+import com.se.blueboard.MessageBoxPage;
 import com.se.blueboard.R;
-
-import com.se.blueboard.MainActivity;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import model.Account;
 import model.User;
 
 public class Utils implements Utilities {
@@ -120,7 +116,7 @@ public class Utils implements Utilities {
 
         // searchString을 포함하는 대상이 하나도 없을 때
         if(filterdList == null || filterdList.isEmpty()){
-            Toast.makeText(MessagePage.getContext(),  "list 내에" + searchString + "을 포함하고 있는 대상이 없습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MessageBoxPage.getContext(),  "list 내에" + searchString + "을 포함하고 있는 대상이 없습니다.", Toast.LENGTH_SHORT).show();
         }
         else{
             // 출력
@@ -128,11 +124,11 @@ public class Utils implements Utilities {
         }
     }
 
-    public static void gotoPage(Context curContext, Class<?> page) {
+    public static void gotoPage(Context curContext, Class<?> page, String key) {
         // 해당 페이지로 이동(포워딩)
-        // TODO: implement
         Intent intent = new Intent(curContext, page);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("key", key);
         curContext.startActivity(intent);
     }
 

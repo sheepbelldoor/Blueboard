@@ -126,8 +126,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
         android:background="#00FF0000"
-        android:contentDescription="메시지 작성
-"
+        android:contentDescription="메시지 작성"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/filter_unread"
         app:layout_constraintTop_toBottomOf="@+id/message_searchMessage"

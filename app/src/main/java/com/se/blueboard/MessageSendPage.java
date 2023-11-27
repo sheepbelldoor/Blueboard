@@ -14,6 +14,7 @@ import com.google.firebase.firestore.Query;
 import model.Message;
 
 import utils.FirebaseController;
+import utils.Utils;
 
 public class MessageSendPage extends AppCompatActivity {
     private EditText recipientText, titleText, contentText;
@@ -26,6 +27,12 @@ public class MessageSendPage extends AppCompatActivity {
         recipientText = (EditText) findViewById(R.id.editTextRecipient);
         titleText = (EditText) findViewById(R.id.editTextTitle);
         contentText = (EditText) findViewById(R.id.editTextContent);
+
+        // 창 닫기 버튼
+        Button close = findViewById(R.id.icon_close);
+        close.setOnClickListener(view -> {
+            finish();
+        });
 
         send = findViewById(R.id.buttonSend);
         send.setOnClickListener(view -> {

@@ -93,7 +93,7 @@ public class ContentsWeeksListAdapter extends BaseAdapter {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.gotoPage(context, UploadContentPage.class);
+                Utils.gotoPage(context, UploadContentPage.class, null);
             }
         });
 

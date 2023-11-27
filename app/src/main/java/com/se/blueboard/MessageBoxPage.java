@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ import adapter.MessageListAdapter;
 import model.Message;
 import model.User;
 import utils.FirebaseController;
+import utils.Utils;
 
 public class MessageBoxPage extends AppCompatActivity {
     private static Context context;
@@ -71,6 +73,12 @@ public class MessageBoxPage extends AppCompatActivity {
 //        } catch (ParseException e) {
 //            throw new RuntimeException(e);
 //        }
+
+        // 메시지 작성 버튼
+        ImageButton write = findViewById(R.id.goto_write);
+        write.setOnClickListener(view -> {
+            Utils.gotoPage(this, MessageSendPage.class, null);
+        });
 
         Log.d("LoginUser", MainActivity.loginUser.toString());
         Query query = collectionRef.where(Filter.or(
@@ -199,7 +207,6 @@ public class MessageBoxPage extends AppCompatActivity {
                         }
                     });
         });
-
         // navigation Bar
 //        Button Home = findViewById(R.id.)
     }
