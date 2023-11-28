@@ -62,7 +62,8 @@ public class MakeLecturePageThree extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (DocumentSnapshot document: queryDocumentSnapshots.getDocuments()) {
                             if (document.exists()) {
-                                managerList.add(document.toObject(User.class).getStudentId() + "\t" + document.toObject(User.class).getName() + "\t" + document.toObject(User.class).getId());
+                                if (!document.toObject(User.class).getId().equals(currentUser.getId()))
+                                    managerList.add(document.toObject(User.class).getStudentId() + "\t" + document.toObject(User.class).getName() + "\t" + document.toObject(User.class).getId());
                                 Log.d("successGetManagerList", document.toObject(User.class).toString());
 
                                 // 관리자 ListView
@@ -101,10 +102,10 @@ public class MakeLecturePageThree extends AppCompatActivity {
                                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                         String selectedUser = (String) listView.getItemAtPosition(i);
                                         String[] temp = selectedUser.split("\t");
-                                        if (makingLecture.getManagers().contains(temp[1]))
+                                        if (makingLecture.getManagers().contains(selectedUser))
                                             Utils.toastTest(getApplicationContext(), "이미 존재하는 관리자입니다.");
                                         else {
-                                            makingLecture.addManager(temp[2]);
+                                            makingLecture.addManager(selectedUser);
                                             Utils.toastTest(getApplicationContext(), "관리자 " + temp[1] +"이(가)" + "추가되었습니다.");
                                             currentManagers.setText(Integer.toString(makingLecture.getManagers().size() + 1));
                                         }
