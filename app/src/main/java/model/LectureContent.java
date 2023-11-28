@@ -10,13 +10,13 @@ public class LectureContent {
     private int week;
     private Date deadline;
     private String type;
-    private List<String> files;
+    private String files;
     private String detail;
 
     // Constructor
     protected LectureContent() {}
     protected LectureContent(String id, String title, int week, Date deadline,
-                           String type, List<String> files, String detail) {
+                           String type, String files, String detail) {
         this.id = id;
         this.title = title;
         this.week = week;
@@ -33,7 +33,7 @@ public class LectureContent {
         return new LectureContent(null, null, 0, null, null, null, null);
     }
 
-    public static LectureContent makeLectureContent(String id, String title, int week, Date deadline, String type, List<String> files, String detail) {
+    public static LectureContent makeLectureContent(String id, String title, int week, Date deadline, String type, String files, String detail) {
         // named constructor (factory function)
         // TODO: implement
         return new LectureContent(id, title, week, deadline, type, files, detail);
@@ -71,7 +71,7 @@ public class LectureContent {
         return this.type;
     }
 
-    public List<String> getFiles() { return this.files; }
+    public String getFiles() { return this.files; }
 
     public String getDetail() {
         return this.detail;

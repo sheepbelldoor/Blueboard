@@ -1,8 +1,10 @@
 package adapter;
 
 import static com.se.blueboard.HomePage.currentUser;
+import static com.se.blueboard.LecturePage.currentLecture;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +17,27 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.se.blueboard.R;
 import com.se.blueboard.UploadContentPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Announcement;
+import model.Assignment;
+import model.Exam;
 import model.LectureContent;
+import model.Post;
 import utils.Utils;
 
 public class ContentsWeeksListAdapter extends BaseAdapter {
     ArrayList<Integer> lectureContentsWeekList = new ArrayList<>();
+    ArrayList<LectureContent> lectureContentsList = new ArrayList<>();
+
 
     public ContentsWeeksListAdapter(ArrayList<Integer> lectureContentsWeekList) {
         this.lectureContentsWeekList = lectureContentsWeekList;
@@ -64,24 +76,70 @@ public class ContentsWeeksListAdapter extends BaseAdapter {
         TextView currentWeek = (TextView) convertView.findViewById(R.id.contentsList_week);
         currentWeek.setText( "Week " + lectureContentWeek);
 
-        // Test Dummy Data
-        LectureContent lectureContent1 = LectureContent.makeLectureContent("test1", "test1", 1, null, null, null, null);
-        LectureContent lectureContent2 = LectureContent.makeLectureContent("test2", "test2", 2, null, null, null, null);
-        LectureContent lectureContent3 = LectureContent.makeLectureContent("test3", "test3", 3, null, null, null, null);
-        LectureContent lectureContent4 = LectureContent.makeLectureContent("test4", "test4", 4, null, null, null, null);
-
-        ArrayList<LectureContent> lectureContentsList = new ArrayList<>();
-        lectureContentsList.add(lectureContent1);
-        lectureContentsList.add(lectureContent2);
-        lectureContentsList.add(lectureContent3);
-        lectureContentsList.add(lectureContent4);
-
-
         // Inner ListView
         ListView contentsListView = convertView.findViewById(R.id.weeks_lectureContentsListView);
         ContentsListAdapter contentsListAdapter = new ContentsListAdapter(lectureContentsList);
         contentsListView.setAdapter(contentsListAdapter);
         contentsListView.setVisibility(View.INVISIBLE);
+
+        // Get Lecture Data
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("posts")
+                .whereEqualTo("week", lectureContentWeek)
+                .whereEqualTo("lectureId", currentLecture.getId())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                      @Override
+                      public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                          for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                              if (document.exists()) {
+                                  lectureContentsList.add(document.toObject(Post.class));
+                                  Log.d("successAddPost", document.toObject(Post.class).getTitle());
+
+                                  ContentsListAdapter contentsListAdapter = new ContentsListAdapter(lectureContentsList);
+                                  contentsListView.setAdapter(contentsListAdapter);
+                              }
+                          }
+                      }
+                  });
+        db.collection("exams")
+                .whereEqualTo("week", lectureContentWeek)
+                .whereEqualTo("lectureId", currentLecture.getId())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                            if (document.exists()) {
+                                lectureContentsList.add(document.toObject(Exam.class));
+                                Log.d("successAddExam", document.toObject(Exam.class).getTitle());
+
+                                ContentsListAdapter contentsListAdapter = new ContentsListAdapter(lectureContentsList);
+                                contentsListView.setAdapter(contentsListAdapter);
+                            }
+                        }
+                    }
+                });
+        db.collection("assignments")
+                .whereEqualTo("week", lectureContentWeek)
+                .whereEqualTo("lectureId", currentLecture.getId())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                            if (document.exists()) {
+                                lectureContentsList.add(document.toObject(Assignment.class));
+                                Log.d("successAddAssignment", document.toObject(Assignment.class).getTitle());
+
+                                ContentsListAdapter contentsListAdapter = new ContentsListAdapter(lectureContentsList);
+                                contentsListView.setAdapter(contentsListAdapter);
+                            }
+                        }
+                    }
+                });
+
+
 
         contentsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -97,7 +155,8 @@ public class ContentsWeeksListAdapter extends BaseAdapter {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.gotoPage(context, UploadContentPage.class, null);
+                Log.d("lectureContentsWeek", String.valueOf(lectureContentWeek) );
+                Utils.gotoPage(context, UploadContentPage.class, String.valueOf(lectureContentWeek));
             }
         });
 

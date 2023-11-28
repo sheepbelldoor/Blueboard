@@ -16,7 +16,7 @@ public class Assignment extends LectureContent {
     }
 
     private Assignment(String id, String title, int week, Date deadline,
-                       String type, List<String> files, String detail,
+                       String type, String files, String detail,
                        Date uploadTime, Date deadlineDate, List<String> submissions, String lectureId) {
         super(id, title, week, deadline, type, files, detail);
         this.uploadTime = uploadTime;
@@ -33,7 +33,7 @@ public class Assignment extends LectureContent {
     }
 
     public static Assignment makeAssignment(String id, String title, int week, Date deadline,
-                                            String type, List<String> files, String detail,
+                                            String type, String files, String detail,
                                             Date uploadTime, Date deadlineDate, List<String> submissions, String lectureId) {
         // named constructor
         // TODO: implement

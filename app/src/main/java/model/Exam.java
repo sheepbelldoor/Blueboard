@@ -12,7 +12,7 @@ public class Exam extends LectureContent {
     // Constructor
     private Exam() {}
     private Exam(String id, String title, int week, Date deadline,
-                 String type, List<String> files, String detail,
+                 String type, String files, String detail,
                  Date date, String location, String lectureId) {
         super(id, title, week, deadline, type, files, detail);
         this.date = date;
@@ -27,7 +27,7 @@ public class Exam extends LectureContent {
         return new Exam(null, null, 0, null, null, null, null, null, null, null);
     }
     public static Exam makeExam(String id, String title, int week, Date deadline,
-                                String type, List<String> files, String detail,
+                                String type, String files, String detail,
                                 Date date, String location, String lectureId) {
         return new Exam(id, title, week, deadline, type, files, detail, date, location, lectureId);
     }

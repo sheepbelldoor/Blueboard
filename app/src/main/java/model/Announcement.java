@@ -8,13 +8,13 @@ public class Announcement {
     private String id;
     private String detail;
     private Date uploadTime;
-    private List<String> files;
+    private String files;
     private String title;
     private List<String> comments;
     private String lectureId;
     // Constructor
     private Announcement(String id, String detail, Date uploadTime,
-                         List<String> files, String title, List<String> comments, String lectureId) {
+                         String files, String title, List<String> comments, String lectureId) {
         this.id = id;
         this.detail = detail;
         this.uploadTime = uploadTime;
@@ -32,7 +32,7 @@ public class Announcement {
         // TODO: implement
         return new Announcement(null, null, null, null, null, null, null);
     }
-    public static Announcement makeAnnouncement(String id, String detail, Date uploadTime, List<String> files, String title, List<String> comments, String lectureId) {
+    public static Announcement makeAnnouncement(String id, String detail, Date uploadTime, String files, String title, List<String> comments, String lectureId) {
         return new Announcement(id, detail, uploadTime, files, title, comments, lectureId);
     }
 
@@ -51,7 +51,7 @@ public class Announcement {
         return uploadTime;
     }
 
-    public List<String> getFiles() {
+    public String getFiles() {
         return files;
     }
 
