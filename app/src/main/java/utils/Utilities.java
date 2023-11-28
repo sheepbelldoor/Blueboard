@@ -18,6 +18,6 @@ public interface Utilities {
     static void gotoPage(String page){};
     void showErrMsg(Context context, String errorMessage);
     void pushAlarm(Context context, String channelId, int id, String title, String body);
-    String masking(String personalInfo);
+    static String masking(String personalInfo) { return null; }
     void pagination(Context context, LinearLayout containerLayout, List<String> pageItem, int currentPage);
 }

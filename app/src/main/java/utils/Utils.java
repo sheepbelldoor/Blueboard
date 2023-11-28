@@ -175,7 +175,7 @@ public class Utils implements Utilities {
 
     }
 
-    public String masking(String personalInfo) {
+    public static String masking(String personalInfo) {
         // 개인정보 마스킹
         // 홍길동 -> 홍*동
         // 0123456789 -> 01*****789

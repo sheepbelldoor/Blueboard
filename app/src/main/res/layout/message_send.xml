@@ -23,23 +23,24 @@
         android:layout_marginTop="33dp"
         android:background="@drawable/icon_close" />
 
-    <EditText
+    <Button
         android:id="@+id/editTextRecipient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/message_send"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="10dp"
-        android:hint="수신자"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/edittext_no_bottom_line"
         android:fontFamily="@font/palanquin_light"
-        android:inputType="textPersonName"
-        android:maxLines="1"
-        android:background="@drawable/edittext_no_bottom_line" />
+        android:gravity="left|center_vertical"
+
+        android:hint="수신자"
+        android:textSize="18sp" />
 
     <!-- 얇은 선 -->
     <View
-        android:id="@+id/dividerLine1"
+        android:id="@+id/borderLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/editTextRecipient"
