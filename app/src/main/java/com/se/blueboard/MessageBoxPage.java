@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 import adapter.MessageListAdapter;
+import io.grpc.okhttp.internal.Util;
 import model.Message;
 import model.User;
 import utils.FirebaseController;
