@@ -118,16 +118,32 @@ public class MessageBoxPage extends AppCompatActivity {
             recyclerView.setAdapter(mAdapter);
         });
 
+        // 작성 버튼
+        ImageButton goToWrite = findViewById(R.id.goto_write);
+        goToWrite.setOnClickListener(view -> {
+            Utils.gotoPage(getApplicationContext(), MessageSendPage.class, null);
+        });
+
         // 검색창
         searchView = findViewById(R.id.message_searchMessage);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Query searchQuery = db.collection("messages").where(Filter.or(
-                        Filter.equalTo("asfd", "adf"),
-                        Filter.equalTo("adfsdf", "ad"),
-                        Filter.equalTo("adf", "qwe")
-                ));
+                if (query == null) {
+                    mAdapter.updateOptions(options);
+                    recyclerView.setAdapter(mAdapter);
+                } else {
+                    Query searchQuery = db.collection("messages").where(Filter.or(
+                            Filter.equalTo("title", query),
+                            Filter.equalTo("senderId", query),
+                            Filter.equalTo("receiverId", query),
+                            Filter.equalTo("content", query)
+                    ));
+                    FirestoreRecyclerOptions<Message> searchOptions = new FirestoreRecyclerOptions.Builder<Message>()
+                            .setQuery(searchQuery, Message.class).build();
+                    mAdapter.updateOptions(searchOptions);
+                    recyclerView.setAdapter(mAdapter);
+                }
                 return false;
             }
 

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         verifyStoragePermissions(this);
+        FirebaseController controller = new FirebaseController();
         List<String> courses = new ArrayList<>();
         courses.add("t1");
         courses.add("t2");
@@ -67,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
             User user = new User("abc5", "test", "test", "test", "test", "test", "test", listA, null, null, null, 1, 1, 1);
             // User user = new User("abc1", "test", "test", "test", "test", "test", "test", listA, null, null, null, 1, 1, 1);
-            FirebaseController controller = new FirebaseController();
             Message m1 = Message.makeMessage("1", "abc2", "abc5", "과제 안내", "과제가 일주일 연장 되었습니다.", new Date(), null, null, true);
             controller.sendMessageData(m1);
 
@@ -150,7 +151,20 @@ public class MainActivity extends AppCompatActivity {
         // Message button
         Button messageButton = findViewById(R.id.message);
         messageButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
+            controller.getUserData("abc1", new MyCallback() {
+                @Override
+                public void onSuccess(Object object) {
+                    loginUser = (User) object;
+                    Log.d("Main", loginUser.toString());
+                    Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
+                }
+
+                @Override
+                public void onFailure(Exception e) {
+                    Log.d("onFailure: ", e.getMessage());
+                }
+            });
+
         });
 
         // Profile button
