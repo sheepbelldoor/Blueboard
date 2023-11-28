@@ -7,10 +7,18 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -20,6 +28,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,6 +41,7 @@ import java.util.Map;
 
 import model.Message;
 import utils.MyCallback;
+import utils.PathUtils;
 import utils.Utils;
 import model.User;
 import utils.FirebaseController;
@@ -114,35 +128,19 @@ public class MainActivity extends AppCompatActivity {
             Utils.gotoPage(getApplicationContext(), LoginPage.class, null);
         });
 
-        // Announcement button
+        // File test button
         Button announcementButton = findViewById(R.id.announcement);
+        announcementButton.setText("3. FILETEST");
         announcementButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), AnnouncementPage.class, null);
-
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            startActivityForResult(intent, 1);
         });
 
         // Attendance button
         Button attendanceButton = findViewById(R.id.attendance);
         attendanceButton.setOnClickListener(view -> {
             Utils.gotoPage(getApplicationContext(), AttendancePage.class, null);
-        });
-
-        // Contents button
-        Button contentsButton = findViewById(R.id.contents);
-        contentsButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), ContentsPage.class, null);
-        });
-
-        // Groups button
-        Button groupsButton = findViewById(R.id.groups);
-        groupsButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), GroupsPage.class, null);
-        });
-
-        // Home button
-        Button homeButton = findViewById(R.id.home);
-        homeButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), HomePage.class, null);
         });
 
         // Lecture button
@@ -209,4 +207,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    FirebaseController controller = new FirebaseController();
+//    String name = "1-CourseIntro.pdf";
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
+                Utils.toastTest(getApplicationContext(), data.getData().toString());
+                controller.uploadFile(new File(PathUtils.getPath(getApplicationContext(), data.getData())));
+            }
+        }
+    }
 }
