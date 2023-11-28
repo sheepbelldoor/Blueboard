@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="320dp"
+    android:layout_height="400dp"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/groupsPopUp_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Name"
+        android:textSize="23dp"
+        android:fontFamily="@font/palanquin_medium"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/groupsPopUp_studentID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="StudentID"
+        android:textSize="23dp"
+        android:fontFamily="@font/palanquin_medium"
+        android:textColor="#000000" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Image"
+        android:textSize="23dp"
+        android:fontFamily="@font/palanquin_medium"
+        android:textColor="#000000" />
+
+    <ImageView
+        android:id="@+id/groupsPopUp_image"
+        android:layout_width="146dp"
+        android:layout_height="146dp"
+        android:layout_gravity="center_horizontal"
+        android:clipToOutline="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="100">
+        <Button
+            android:id="@+id/groupsPopUp_OK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="20"
+            android:text="닫기"
+            android:textSize="15dp"
+            android:background="@drawable/button_cancel"
+            android:fontFamily="@font/palanquin_medium"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="60">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/groupsPopUp_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="20"
+            android:background="@drawable/button_post"
+            android:fontFamily="@font/palanquin_medium"
+            android:text="메시지 쓰기"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

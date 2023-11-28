@@ -33,10 +33,10 @@
         <activity android:name=".AttendancePage" />
         <activity android:name=".ContentsPage" />
         <activity android:name=".GroupsPage" />
+        <activity android:name=".GroupsPopUp" />
         <activity android:name=".HomePage" />
         <activity android:name=".LecturePage" />
         <activity android:name=".LoginPage" />
-        <activity android:name=".MessagePage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".EditProfilePage" />
         <activity android:name=".NotificationPage" />
