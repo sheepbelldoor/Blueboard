@@ -99,14 +99,14 @@ public class MakeLecturePageFour extends AppCompatActivity {
                                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                         String selectedUser = (String) listView.getItemAtPosition(i);
                                         String[] temp = selectedUser.split("\t");
-                                        if (makingLecture.getStudents().contains(temp[1]))
+                                        if (makingLecture.getStudents().contains(selectedUser))
                                             Utils.toastTest(getApplicationContext(), "이미 존재하는 사용자입니다.");
                                         else {
                                             // 수강 인원이 최대 인원보다 많은 경우
                                             if (makingLecture.getStudents().size() >= Integer.parseInt(makingLecture.getMaxStudents()))
                                                 Utils.toastTest(getApplicationContext(), "수강인원은 " + makingLecture.getMaxStudents() +"를 넘을 수 없습니다.");
                                             else {
-                                                makingLecture.addStudent(temp[2]);
+                                                makingLecture.addStudent(selectedUser);
                                                 Utils.toastTest(getApplicationContext(), "사용자 " + temp[1] +"이(가)" + "추가되었습니다.");
                                                 learningStudents.setText(makingLecture.getStudents().size() + " / " + makingLecture.getMaxStudents());
                                             }
@@ -134,7 +134,8 @@ public class MakeLecturePageFour extends AppCompatActivity {
 
         // Update Manager's Lecture Data
         for (String managerId: lecture.getManagers()) {
-            controller.getUserData(managerId, new MyCallback() {
+            String[] temp = managerId.split("\t");
+            controller.getUserData(temp[2], new MyCallback() {
                 @Override
                 public void onSuccess(Object object) {
                     User user = (User) object;
@@ -151,7 +152,8 @@ public class MakeLecturePageFour extends AppCompatActivity {
 
         // Update Student's Lecture Data
         for (String studentId: lecture.getStudents()) {
-            controller.getUserData(studentId, new MyCallback() {
+            String[] temp = studentId.split("\t");
+            controller.getUserData(temp[2], new MyCallback() {
                 @Override
                 public void onSuccess(Object object) {
                     User user = (User) object;
@@ -173,7 +175,7 @@ public class MakeLecturePageFour extends AppCompatActivity {
                 if (!user.getCourses().contains(lecture.getId()))
                     user.addCourses(lecture.getId());
                 controller.updateData(user);
-
+                Log.d("successAddCourseData", "In currentUser");
                 Utils.gotoPage(getApplicationContext(), HomePage.class, null);
             }
             @Override

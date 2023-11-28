@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.se.blueboard.makeLecture.MakeLecturePageOne;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import adapter.MainLectureAdapter;
 import model.Lecture;
@@ -77,7 +79,12 @@ public class HomePage extends AppCompatActivity {
                                 }
                                 flag = true;
                             }
+                            
+                            // 없는 강의인 경우 userLectureList에 삽입
                             if (flag) { userLectureList.add(lecture); }
+                            // 오름차순 정렬
+                            userLectureList.sort(new LectureNameComparator());
+                            // userLectureList GridView 출력
                             MainLectureAdapter mainLectureAdapter = new MainLectureAdapter(userLectureList);
                             lectureGridView.setAdapter(mainLectureAdapter);
 
@@ -101,7 +108,7 @@ public class HomePage extends AppCompatActivity {
                         public void onFailure(Exception e) {
                             Log.d("failGetLectureList", e.getMessage());
                         }
-                    });
+                    }); // End controller.getLectureData
                 }
             }
             @Override
@@ -110,5 +117,16 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+    } // End onCreate()
+
+    class LectureNameComparator implements Comparator<Lecture> {
+        @Override
+        public int compare(Lecture lecture1, Lecture lecture2) {
+            if (lecture1.getName().compareTo(lecture2.getName()) > 0)
+                return 1;
+            else if (lecture1.getName().compareTo(lecture2.getName()) < 0)
+                return -1;
+            return 0;
+        }
     }
 }
