@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import model.Message;
 import utils.FirebaseController;
@@ -86,7 +88,20 @@ public class MessageViewPage extends AppCompatActivity {
                 }
 
                 // 날짜
-                SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+                SimpleDateFormat newFormat;
+                Calendar cal1, cal2;
+                cal1 = Calendar.getInstance();
+                cal2 = Calendar.getInstance();
+                cal1.setTime(message.getDate());
+
+                if (cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR)) {
+                    newFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
+                } else if (cal1.get(Calendar.DATE) != cal2.get(Calendar.DATE)) {
+                    newFormat = new SimpleDateFormat("MMM dd", Locale.ENGLISH);
+                } else {
+                    newFormat = new SimpleDateFormat("HH:mm");
+                }
+
                 TextView date = findViewById(R.id.textViewDate);
                 date.setText(newFormat.format(message.getDate()));
 
