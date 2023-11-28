@@ -256,7 +256,7 @@
                 android:layout_marginTop="1120dp"
                 android:gravity="left|center"
                 android:letterSpacing="0.03"
-                android:text="관리자 여부 (관리자: 1, 일반 사용자: 0)"
+                android:text="관리자 여부"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
