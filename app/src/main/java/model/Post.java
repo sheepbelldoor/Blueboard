@@ -14,7 +14,7 @@ public class Post extends LectureContent {
         super();
     }
     private Post(String id, String title, int week, Date deadline,
-                 String type, List<String> files, String detail,
+                 String type, String files, String detail,
                  Date uploadTime, List<String> comments, String lectureId) {
         super(id, title, week, deadline, type, files, detail);
         this.uploadTime = uploadTime;
@@ -29,7 +29,7 @@ public class Post extends LectureContent {
         return new Post(null, null, 0, null, null, null, null, null, null, null);
     }
 
-    public static Post makePost(String id, String title, int week, Date deadline, String type, List<String> files, String detail, Date uploadTime, List<String> comments, String lectureId) {
+    public static Post makePost(String id, String title, int week, Date deadline, String type, String files, String detail, Date uploadTime, List<String> comments, String lectureId) {
         return new Post(id, title, week, deadline, type, files, detail, uploadTime, comments, lectureId);
     }
 

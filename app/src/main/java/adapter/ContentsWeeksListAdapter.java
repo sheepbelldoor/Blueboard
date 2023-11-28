@@ -3,6 +3,7 @@ package adapter;
 import static com.se.blueboard.HomePage.currentUser;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,7 +98,8 @@ public class ContentsWeeksListAdapter extends BaseAdapter {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.gotoPage(context, UploadContentPage.class, null);
+                Log.d("lectureContentsWeek", String.valueOf(lectureContentWeek) );
+                Utils.gotoPage(context, UploadContentPage.class, String.valueOf(lectureContentWeek));
             }
         });
 

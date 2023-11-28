@@ -2,6 +2,7 @@ package com.se.blueboard;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -34,11 +35,23 @@ public class AnnouncementIn extends AppCompatActivity {
         });
 
         controller.getAnnouncementData(getIntent().getExtras().getString("key"), new MyCallback() {
-
-
             @Override
             public void onSuccess(Object object) {
                 currentAnnouncement = (Announcement) object;
+                // 첨부파일 있으면 표시
+                Button attachment = findViewById(R.id.announcement_attachment);
+                if (currentAnnouncement.getFiles() != null) {
+                    attachment.setText(currentAnnouncement.getFiles());
+                    attachment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            controller.downloadFile(currentAnnouncement.getFiles());
+                            Utils.toastTest(getApplicationContext(), "다운로드 완료!");
+                        }
+                    });
+                }
+                else
+                    attachment.setVisibility(View.INVISIBLE);
 
                 TextView titleText = findViewById(R.id.announcement_title_header);
                 TextView detailText = findViewById(R.id.announcement_detail);

@@ -12,7 +12,7 @@ public class Material extends LectureContent {
         super();
     }
     private Material(String id, String title, int week, Date deadline,
-                     String type, List<String> files, String detail,
+                     String type, String files, String detail,
                      Date uploadTime) {
         super(id, title, week, deadline, type, files, detail);
         this.uploadTime = uploadTime;
