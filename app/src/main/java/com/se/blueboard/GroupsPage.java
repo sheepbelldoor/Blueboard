@@ -1,6 +1,7 @@
 package com.se.blueboard;
 
 import static com.se.blueboard.LecturePage.currentLecture;
+import static com.se.blueboard.HomePage.currentUser;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,7 +62,10 @@ public class GroupsPage extends AppCompatActivity {
         // 사용자 목록 추가
         for (String student: currentLecture.getStudents()) {
             String[] temp = student.split("\t");
-            studentList.add(temp[0] + "  " + temp[1]);
+            if (currentUser.getIsManager() != 1)
+                studentList.add(Utils.masking(temp[0]) + "  " + temp[1]);
+            else
+                studentList.add(temp[0] + "  " + temp[1]);
         }
         userslistView.setAdapter(userListAdapter);
 

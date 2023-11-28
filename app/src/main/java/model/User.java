@@ -125,6 +125,8 @@ public class User {
     }
 
     public String getEmail() {
+        if (this.email == null)
+            return "NONE";
         return email;
     }
 

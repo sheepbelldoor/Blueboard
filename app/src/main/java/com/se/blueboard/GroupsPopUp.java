@@ -1,9 +1,12 @@
 package com.se.blueboard;
 
+import static com.se.blueboard.HomePage.currentUser;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -50,7 +53,22 @@ public class GroupsPopUp extends AppCompatActivity {
                             name.setText("Name:  " + popUpUser.getName());
                             // studentID TextView
                             TextView studentId = findViewById(R.id.groupsPopUp_studentID);
-                            studentId.setText("ID:  " + popUpUser.getStudentId());
+                            // email TextView
+                            TextView email = findViewById(R.id.groupsPopUp_email);
+
+                            // 현재 유저가 관리자가 아니라면 데이터 마스킹
+                            if (currentUser.getIsManager() != 1) {
+                                studentId.setText("ID:  " + Utils.masking(Long.toString(popUpUser.getStudentId())));
+                                email.setText("Email:  " + Utils.masking(popUpUser.getEmail()));
+                                Log.d("getIsManager", "onSuccess: " + currentUser.getIsManager());
+                                Log.d("getIsManager", "onSuccess: " + currentUser.getId());
+                                Log.d("getIsManager", "onSuccess: " + currentUser.getName());
+                            }
+                            else {
+                                studentId.setText("ID:  " + popUpUser.getStudentId());
+                                email.setText("Email:  " + popUpUser.getEmail());
+                            }
+
                             // 유저 ImageView
                             // 이미지 대충 넣어둠
                             Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.profile_two);
