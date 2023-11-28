@@ -11,16 +11,17 @@ public class Announcement {
     private List<String> files;
     private String title;
     private List<String> comments;
-
+    private String lectureId;
     // Constructor
     private Announcement(String id, String detail, Date uploadTime,
-                         List<String> files, String title, List<String> comments) {
+                         List<String> files, String title, List<String> comments, String lectureId) {
         this.id = id;
         this.detail = detail;
         this.uploadTime = uploadTime;
         this.files = files;
         this.title = title;
         this.comments = comments;
+        this.lectureId = lectureId;
     }
 
     private Announcement() {}
@@ -29,7 +30,10 @@ public class Announcement {
     public static Announcement makeAnnouncement() {
         // named constructor
         // TODO: implement
-        return new Announcement(null, null, null, null, null, null);
+        return new Announcement(null, null, null, null, null, null, null);
+    }
+    public static Announcement makeAnnouncement(String id, String detail, Date uploadTime, List<String> files, String title, List<String> comments, String lectureId) {
+        return new Announcement(id, detail, uploadTime, files, title, comments, lectureId);
     }
 
     // Methods (If additional methods are needed for Announcement, add them here)
@@ -54,7 +58,7 @@ public class Announcement {
     public String getTitle() {
         return title;
     }
-
+    public String getLectureId() { return this.lectureId; }
     public List<String> getComments() {
         return comments;
     }

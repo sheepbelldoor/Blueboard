@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
         android:padding="5dp"
-        android:text="Upload Contents"
+        android:text="Lecture Upload"
         android:textSize="36sp"
         android:textColor="#0A0B0B"
         android:fontFamily="@font/palanquindark_regular"
@@ -36,5 +36,244 @@
         app:layout_constraintStart_toStartOf="@+id/lecture_header"
         app:layout_constraintTop_toBottomOf="@+id/lecture_header" />
 
+    <!--  제목  -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
 
+        <EditText
+            android:id="@+id/uploadContent_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="제목"
+            android:padding="5dp"
+            android:textColor="#0A0B0B"
+            android:textSize="19sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="7px"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="#F3F3F3"
+        app:layout_constraintEnd_toEndOf="@+id/lecture_header"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lecture_header"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <!--  게시글 유형  -->
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2">
+
+        <Spinner
+            android:id="@+id/uploadContent_format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/roboto_medium"
+            android:spinnerMode="dropdown"
+            android:padding="5dp"
+            android:textColor="#0A0B0B"
+            android:textSize="19sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="7px"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="#F3F3F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <!--  마감 일자  -->
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3">
+
+        <EditText
+            android:id="@+id/uploadContent_dueDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="마감일자"
+            android:clickable="true"
+            android:focusable="false"
+            android:padding="5dp"
+            android:textColor="#0A0B0B"
+            android:textSize="19sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="7px"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="#F3F3F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <!--  내용  -->
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4">
+
+        <EditText
+            android:id="@+id/uploadContent_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF"
+            android:gravity="clip_horizontal"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="내용"
+            android:padding="5dp"
+            android:textColor="#0A0B0B"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="7px"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="#F3F3F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+
+    <!--  첨부파일  -->
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:gravity="clip_horizontal"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="첨부파일"
+            android:layout_weight="90"
+            android:padding="5dp"
+            android:textColor="#0A0B0B"
+            android:textSize="19sp" />
+        <Button
+            android:id="@+id/uploadContent_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:text="첨부"
+            android:gravity="right"
+            android:textSize="16dp"
+            android:padding="5dp"
+            android:background="#00FFFFFF"
+            android:textColor="#0478FF"
+            android:fontFamily="@font/palanquin_light"
+            />
+    </LinearLayout>
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="7px"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:background="#F3F3F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6">
+
+        <Button
+            android:id="@+id/uploadContent_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:text="취소"
+            android:textSize="16dp"
+            android:padding="5dp"
+            android:background="@drawable/button_cancel"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/roboto_bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="60">
+        </LinearLayout>
+        <Button
+            android:id="@+id/uploadContent_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:text="게시"
+            android:textSize="16dp"
+            android:padding="5dp"
+            android:background="@drawable/button_post"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/roboto_bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

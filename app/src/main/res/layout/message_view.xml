@@ -13,8 +13,9 @@
         <!-- 뒤로가기 버튼 -->
     <Button
         android:id="@+id/icon_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:contentDescription="뒤로가기"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
@@ -25,8 +26,9 @@
         <!-- 쓰레기통 아이콘 -->
         <Button
             android:id="@+id/icon_delete"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:contentDescription="메시지 삭제"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="10dp"
@@ -44,23 +46,10 @@
         android:layout_marginLeft="20dp"
         android:text="제목"
         android:textColor="#000000"
-        android:textSize="22sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon_back" />
-
-<!--    &lt;!&ndash; 과목명 텍스트 &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:id="@+id/textViewSubject"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginTop="25dp"-->
-<!--        android:layout_toEndOf="@+id/textViewTitle"-->
-<!--        android:text="과목명"-->
-<!--        android:textSize="12sp"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewTitle"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/icon_back" />-->
 
     <!-- 프로필 사진 (동그라미) -->
     <ImageView
@@ -80,7 +69,7 @@
         android:layout_marginLeft="75dp"
         android:text="To or Send"
         android:textColor="#000000"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
         app:layout_constraintStart_toStartOf="@+id/imageViewProfile"
@@ -97,7 +86,7 @@
         android:maxLength="10"
         android:text="발신자/수신자"
         android:textColor="#000000"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
         app:layout_constraintStart_toEndOf="@+id/textViewSenderOrReceiver"
         app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
@@ -110,28 +99,21 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:text="날짜"
-        android:textSize="13sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
         app:layout_constraintStart_toEndOf="@+id/textViewPersonName"
         app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
 
     <Button
         android:id="@+id/icon_reply"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:contentDescription="메시지 답장"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
         android:background="@drawable/icon_reply"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
-
-    <Button
-        android:id="@+id/icon_more"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/icon_more"
         app:layout_constraintTop_toTopOf="@+id/imageViewProfile" />
 
     <!-- 얇은 선 -->
@@ -151,7 +133,7 @@
         android:layout_below="@+id/dividerLine"
         android:text="메시지 내용"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

@@ -246,39 +246,65 @@
                 android:layout_alignParentTop="true"
                 />
 
+            <TextView
+                android:id="@+id/reg_isMg"
+                android:layout_width="350dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="1120dp"
+                android:gravity="left|center"
+                android:letterSpacing="0.03"
+                android:text="관리자 여부 (관리자: 1, 일반 사용자: 0)"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/select_isMg"
+                android:layout_width="311dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="1150dp"
+                android:layout_marginLeft="38dp"
+                android:background="#D9D9D9"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:entries="@array/mg_array"
+                android:spinnerMode="dialog"
+                />
+
             <Button
                 android:id="@+id/reg_complete"
                 android:layout_width="311dp"
                 android:layout_height="56dp"
-                android:gravity="center"
-                android:text="가입하기"
-                android:textSize="18dp"
-                android:textColor = "#FFFFFF"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="38dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="1150dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="1252dp"
                 android:layout_marginBottom="60dp"
                 android:background="#0478FF"
                 android:elevation="4dp"
-                />
+                android:gravity="center"
+                android:text="가입하기"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp" />
 
             <Button
                 android:id="@+id/backToLogin"
                 android:layout_width="311dp"
                 android:layout_height="56dp"
-                android:gravity="center"
-                android:text="돌아가기"
-                android:textSize="18dp"
-                android:textColor = "#000000"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="38dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="1210dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="1312dp"
                 android:layout_marginBottom="60dp"
                 android:background="#D9D9D9"
                 android:elevation="4dp"
-                />
+                android:gravity="center"
+                android:text="돌아가기"
+                android:textColor="#000000"
+                android:textSize="18dp" />
 
         </RelativeLayout>
     </ScrollView>

@@ -67,13 +67,16 @@ public class MainActivity extends AppCompatActivity {
             listA.add("t1");
             listA.add("t2");
 
-            User user = new User("abc5", "test", "test", "test", "test", "test", "test", listA, null, null, null, 1, 1, 1);
+            User user = new User("abc5", "test", "철수", "test", "test", "test", "test", listA, null, null, null, 1, 1, 1);
             // User user = new User("abc1", "test", "test", "test", "test", "test", "test", listA, null, null, null, 1, 1, 1);
             Message m1 = Message.makeMessage("1", "abc2", "abc5", "과제 안내", "과제가 일주일 연장 되었습니다.", new Date(), null, null, true);
             controller.sendMessageData(m1);
 
             Message m2 = Message.makeMessage("2", "abc5", "abc2", "과제 제출", "과제 제출합니다.", new Date(), null, null, false);
             controller.sendMessageData(m2);
+            controller.sendUserData(loginUser);
+            controller.sendUserData(user);
+
             // delete test
             // controller.deleteData("users", "abc1");
             // send test

@@ -40,13 +40,11 @@ public class MessageViewPage extends AppCompatActivity {
                 message.deleteMsg(message.getReceiverId()==MainActivity.loginUser.getId());
                 });
 
-                // TODO: 답장 버튼
-
-                // TODO: more 버튼, 없애도 될듯?
-
-
-                //debug
-                Log.d("MainActivity.loginUser", MainActivity.loginUser.getId());
+                // 답장 버튼
+                Button reply = findViewById(R.id.icon_reply);
+                reply.setOnClickListener(view -> {
+                    Utils.gotoPage(MessageViewPage.this, MessageSendPage.class, message.getId());
+                });
 
                 // 메시지 정보 불러오기
                 // 제목
@@ -125,9 +123,5 @@ public class MessageViewPage extends AppCompatActivity {
         back.setOnClickListener(view -> {
             Utils.gotoPage(this, MessageBoxPage.class, null);
         });
-
-
-
-
     }
 }

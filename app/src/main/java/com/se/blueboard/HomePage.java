@@ -34,13 +34,26 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        // TODO: LoginPage에서 id intent로 받아서 parameter 입력
         // 유저 아이디를 받아서 데이터 가져옴
-        controller.getUserData("abc1", new MyCallback() {
+        controller.getUserData(currentUser.getId(), new MyCallback() {
             @Override
             public void onSuccess(Object object) {
+                userLectureList = new ArrayList<>();
                 currentUser = (User) object;
                 Log.d("onSuccessGetUserDataHome", currentUser.toString());
+
+                // 현재 유저가 관리자가 아니면 강의 생성 버튼 숨김
+                if (currentUser.getIsManager() == 1) {
+                    // 강의 생성 버튼
+                    Button makeLectureButton = findViewById(R.id.main_makeLecture);
+                    makeLectureButton.setOnClickListener(view -> {
+                        Utils.gotoPage(getApplicationContext(), MakeLecturePageOne.class, null);
+                    });
+                }
+                else {
+                    Button makeLectureButton = findViewById(R.id.main_makeLecture);
+                    makeLectureButton.setVisibility(View.INVISIBLE);
+                }
 
                 // Set GridView
                 GridView lectureGridView = (GridView) findViewById(R.id.main_lectureGridView);
@@ -51,6 +64,7 @@ public class HomePage extends AppCompatActivity {
                     controller.getLectureData(lectureID, new MyCallback() {
                         @Override
                         public void onSuccess(Object object) {
+
                             Lecture lecture = (Lecture) object;
                             boolean flag = true;
 
@@ -95,11 +109,6 @@ public class HomePage extends AppCompatActivity {
                 Log.d("GetUserDataHome", e.getMessage());
             }
         });
-        
-        // 강의 생성 버튼
-        Button makeLectureButton = findViewById(R.id.main_makeLecture);
-        makeLectureButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), MakeLecturePageOne.class, null);
-        });
+
     }
 }

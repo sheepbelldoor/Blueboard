@@ -1,5 +1,7 @@
 package adapter;
 
+import static com.se.blueboard.HomePage.currentUser;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,6 +92,8 @@ public class ContentsWeeksListAdapter extends BaseAdapter {
 
         // Upload Button
         Button uploadButton = convertView.findViewById(R.id.contentsList_uploadButton);
+        if (currentUser.getIsManager() != 1)
+            uploadButton.setVisibility(View.INVISIBLE);
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

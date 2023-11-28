@@ -153,6 +153,27 @@
             android:hint="@{originName}"
             android:privateImeOptions="defaultInputmode=korean" />
 
+        <TextView
+            android:id="@+id/korlimit"
+            android:layout_width="100dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="157dp"
+            android:layout_marginTop="371dp"
+            android:text="20자까지 입력 가능"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/englimit"
+            android:layout_width="100dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="157dp"
+            android:layout_marginTop="424dp"
+            android:text="20자까지 입력 가능"
+            android:textSize="10dp" />
 
         <Button
             android:id="@+id/icon_home"

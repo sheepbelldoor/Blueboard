@@ -5,12 +5,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,18 +27,28 @@ import model.User;
 import utils.FirebaseController;
 import utils.Utils;
 
-import android.widget.Button;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
+
+import java.lang.reflect.Array;
 
 public class Create extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -58,6 +72,11 @@ public class Create extends AppCompatActivity {
 
     private String newInst;
     private String newDept;
+    private int newIsMg;
+
+    private Spinner spinner;
+    private Spinner spinner2;
+    private Spinner spinner3;
 
 
 
@@ -68,12 +87,15 @@ public class Create extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
+//spinner
+    spinner = (Spinner)findViewById(R.id.select_institute);
+    spinner2 = (Spinner)findViewById(R.id.select_dept);
+    spinner3 = (Spinner)findViewById(R.id.select_isMg);
 
-        Spinner spinner = (Spinner)findViewById(R.id.select_institute);
-        newInst = spinner.getSelectedItem().toString();
-
-        Spinner spinner2 = (Spinner)findViewById(R.id.select_dept);
-        newDept = spinner.getSelectedItem().toString();
+    spinner.setOnItemSelectedListener(myListener);
+    spinner2.setOnItemSelectedListener(myListener);
+    spinner3.setOnItemSelectedListener(myListener);
+//spinner
 
         newID = (EditText) findViewById(R.id.square_id);
         newPW = (EditText) findViewById(R.id.square_pw);
@@ -87,7 +109,7 @@ public class Create extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createAccount(
-                        newID.getText().toString(), newPW.getText().toString(), newCheckPW.getText().toString(), newName.getText().toString(), newInst, newDept, newGrade.getText().toString(), newNum.getText().toString()
+                        newID.getText().toString(), newPW.getText().toString(), newCheckPW.getText().toString(), newName.getText().toString(), newInst, newDept, newGrade.getText().toString(), newNum.getText().toString(), newIsMg
                 );
             }
         });
@@ -98,39 +120,89 @@ public class Create extends AppCompatActivity {
         });
     }
 
-    private void createAccount(String id, String pw, String checkpw, String name, String inst, String dept, String grd, String num) {
+    OnItemSelectedListener myListener = new OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            switch(parent.getId()){
+                case R.id.select_institute:
+                    newInst = parent.getSelectedItem().toString();
+                    break;
+                case R.id.select_dept:
+                    newDept = parent.getSelectedItem().toString();
+                    break;
+                case R.id.select_isMg:
+                    String tmp = parent.getSelectedItem().toString();
+                    if(tmp.equals("O")){
+                        newIsMg = 1;
+                    }
+                    else{
+                        newIsMg = 0;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    private void createAccount(String id, String pw, String checkpw, String name, String inst, String dept, String grd, String num, int isManager) {
+
 
         verifyStoragePermissions(this);
 
         FirebaseController controller = new FirebaseController();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("accounts")
+                .document(id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()) {
+                                Log.d("successGetAccountData", "Success to get accounts data on DB");
+                                Toast.makeText(getApplicationContext(), "중복된 계정입니다.", Toast.LENGTH_SHORT).show();
 
-        if (!id.equals("") && !pw.equals("")) {
-            if (!isValidPW(pw)) {
-                Toast.makeText(
-                        getApplicationContext(), "비밀번호는 영문, 숫자, 특수 문자를 포함한 8자리 문자여야 합니다.’", Toast.LENGTH_SHORT
-                ).show();
-                return;
-            }
-            if(!pw.equals(checkpw)){
-                Toast.makeText(
-                        getApplicationContext(), "비밀번호가 일치하지 않습니다.’", Toast.LENGTH_SHORT
-                ).show();
-                return;
-            }
+                            } else {
+                                if (!id.equals("") && !pw.equals("")) {
+                                    if (!isValidPW(pw)) {
+                                        Toast.makeText(
+                                                getApplicationContext(), "비밀번호는 영문, 숫자, 특수 문자를 포함한 8자리 문자여야 합니다.’", Toast.LENGTH_SHORT
+                                        ).show();
+                                        return;
+                                    }
+                                    if(!pw.equals(checkpw)){
+                                        Toast.makeText(
+                                                getApplicationContext(), "비밀번호가 일치하지 않습니다.’", Toast.LENGTH_SHORT
+                                        ).show();
+                                        return;
+                                    }
 
+                                    User user = User.makeUser(id, id, name, inst, dept, null, null, null, null, null, null, Integer.parseInt(grd), Integer.parseInt(num), isManager);
+                                    Log.d("User", user.toString());
+                                    controller.sendUserData(user);
+                                    Account userAcc = Account.makeAccount(id, id, pw);
+                                    controller.sendAccountData(userAcc);
 
-            buttonCompleteRegister.setOnClickListener(view -> {
-                User user = User.makeUser(null, id, name, inst, dept, null, null, null, null, null, null, Integer.parseInt(grd), Integer.parseInt(num), 0);
-                controller.sendUserData(user);
-
-                 // 회원가입 완료
-                Toast.makeText(
-                        getApplicationContext(), "회원가입이 완료되었습니다. 로그인 화면으로 돌아가 로그인하세요.", Toast.LENGTH_SHORT
-                ).show();
-                Utils.gotoPage(getApplicationContext(), LoginPage.class, null);
-            });
-
-        }
+                                    // 회원가입 완료
+                                    Toast.makeText(
+                                            getApplicationContext(), "회원가입이 완료되었습니다. 로그인 화면으로 돌아가 로그인하세요.", Toast.LENGTH_SHORT
+                                    ).show();
+                                    //Log.d("checkIsMg", String.valueOf(isManager));
+                                    Utils.gotoPage(getApplicationContext(), LoginPage.class, null);
+                                }
+                            }
+                        } else {
+                            Log.d("failGetAccountData", "Fail to get accounts data on DB");
+                        }
+                    }
+                });
     }
 
     private boolean isValidPW(String pw){
@@ -152,4 +224,6 @@ public class Create extends AppCompatActivity {
             );
         }
     }
+
+
 }

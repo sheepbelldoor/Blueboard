@@ -90,7 +90,8 @@ public class Lecture {
     public void setName(String name) {this.name = name;}
     public void setWeeks(String weeks) {this.weeks = weeks;}
     public void setMaxStudents(String maxStudents) { this.maxStudents = maxStudents; }
-    public void addManager(String manager) { this.managers.add(manager); }
+    public void addManager(String managerId) { this.managers.add(managerId); }
+    public void addStudent(String studentId) { this.students.add(studentId); }
     public void delManager(String manager) { this.managers.remove(manager); }
 
 }
