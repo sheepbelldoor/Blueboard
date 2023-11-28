@@ -101,7 +101,7 @@ public class AnnouncementPage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Announcement clickedAnnouncement = (Announcement) adapter.getItem(i);
-                Utils.gotoPage(getApplicationContext(), AnnouncementIn.class, null);
+                Utils.gotoPage(getApplicationContext(), AnnouncementIn.class, clickedAnnouncement.getId());
             }
         });
 
