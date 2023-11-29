@@ -8,14 +8,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.se.blueboard.databinding.EditProfileBinding;
 
 import java.io.ByteArrayInputStream;
@@ -110,19 +113,41 @@ public class EditProfilePage extends AppCompatActivity {
                     }
                 });
             }
-
             @Override
             public void onFailure(Exception e) {
                 Log.d("GetUserDataEditProfile", e.getMessage());
             }
         });
 
-        Button homeButton = findViewById(R.id.icon_home);
-        homeButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), HomePage.class, null);
+        // 하단바
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationBar);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        // 홈 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), HomePage.class, null);
+                        return true;
+
+                    case R.id.menu_Mail:
+                        // 메시지 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
+                        return true;
+
+                    case R.id.menu_Notification:
+                        // 알림 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), NotificationPage.class, null);
+                        return true;
+
+                    case R.id.menu_profile:
+                        // 프로필 화면으로 이동 (현재 화면이므로 아무 동작 안함)
+                        return true;
+                }
+                return false;
+            }
         });
 
-        // TODO: 아이콘 클릭 시 메시지, 알림 페이지 이동
     }
 
     // 사진 선택하면 imageview로 보여주기

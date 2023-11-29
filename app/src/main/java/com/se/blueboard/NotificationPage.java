@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 import adapter.NotificationAdapter;
 import model.Alarm;
-import model.Announcement;
 import utils.FirebaseController;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -40,8 +39,6 @@ public class NotificationPage extends AppCompatActivity {
 
     private ListView listView;
     private NotificationAdapter adapter;
-
-    Utils util = Utils.makeUtils();
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
