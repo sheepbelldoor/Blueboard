@@ -1,14 +1,16 @@
 package com.se.blueboard;
 
+import static android.view.KeyEvent.KEYCODE_BACK;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
@@ -23,7 +25,12 @@ import model.Alarm;
 import model.Announcement;
 import utils.FirebaseController;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import utils.Utils;
+
 import static com.se.blueboard.HomePage.currentUser;
+
 
 public class NotificationPage extends AppCompatActivity {
 
@@ -60,6 +67,34 @@ public class NotificationPage extends AppCompatActivity {
                 });
         listView.setAdapter(adapter);
 
-    }
 
+        // 하단바
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationBar);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        // 홈 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), HomePage.class, null);
+                        return true;
+
+                    case R.id.menu_Mail:
+                        // 메시지 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
+                        return true;
+
+                    case R.id.menu_Notification:
+                        // 알림 화면으로 이동 (현재 화면이므로 아무 동작 안함)
+                        return true;
+
+                    case R.id.menu_profile:
+                        // 프로필 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), ProfilePage.class, null);
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
 }

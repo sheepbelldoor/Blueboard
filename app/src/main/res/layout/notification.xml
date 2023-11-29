@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Auto layout, variables, and unit scale are not yet supported -->
+<<<<<<< HEAD
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> refs/remotes/origin/main
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profile_"
-    android:layout_width="410dp"
-    android:layout_height="750dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:clipToOutline="true"
-    android:background="#FFFFFF"
-    >
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/profile"
@@ -24,6 +27,7 @@
         android:textSize="48sp"
         android:textStyle="bold" />
 
+<<<<<<< HEAD
     <ListView
         android:id="@+id/notificationList"
         android:layout_width="match_parent"
@@ -89,6 +93,18 @@
         android:layout_marginLeft="124dp"
         android:layout_marginTop="656dp"
         android:background="@drawable/icon_mail" />
+=======
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navigation_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
+>>>>>>> refs/remotes/origin/main
 
 
 </RelativeLayout>

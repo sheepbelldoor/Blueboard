@@ -1,19 +1,25 @@
 package com.se.blueboard;
 
+import static android.view.KeyEvent.KEYCODE_BACK;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.Firebase;
 import com.se.blueboard.databinding.ProfileBinding;
 
@@ -95,19 +101,34 @@ public class ProfilePage extends AppCompatActivity {
             Utils.gotoPage(getApplicationContext(), EditProfilePage.class, null);
         });
 
-        // 홈 버튼
-        Button homeButton = findViewById(R.id.icon_home);
-        homeButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), HomePage.class, null);
-        });
+        // 하단바
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationBar);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        // 홈 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), HomePage.class, null);
+                        return true;
 
-        // 알림 버튼
-        Button notiButton = findViewById(R.id.icon_notification);
-        notiButton.setOnClickListener(view -> {
-            Utils.gotoPage(getApplicationContext(), NotificationPage.class, null);
-        });
+                    case R.id.menu_Mail:
+                        // 메시지 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
+                        return true;
 
-        // 메시지 이동
+                    case R.id.menu_Notification:
+                        // 알림 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), NotificationPage.class, null);
+                        return true;
+
+                    case R.id.menu_profile:
+                        // 프로필 화면으로 이동 (현재 화면이므로 아무 동작 안함)
+                        return true;
+                }
+                return false;
+            }
+        });
     }
     public String bitmapToString(Bitmap bitmap){
         String image = "";
