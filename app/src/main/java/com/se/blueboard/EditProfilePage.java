@@ -1,5 +1,7 @@
 package com.se.blueboard;
 
+import static com.se.blueboard.HomePage.currentUser;
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,8 +38,6 @@ public class EditProfilePage extends AppCompatActivity {
 
     FirebaseController controller = new FirebaseController();
 
-    public static User currentUser = User.makeUser();
-
     Utils util = Utils.makeUtils();
     ImageView image;
     String imgString;
@@ -50,14 +50,14 @@ public class EditProfilePage extends AppCompatActivity {
         Button uploadButton = findViewById(R.id.upload);
         Button saveButton = findViewById(R.id.save);
 
-        // TODO: LoginPage에서 id intent로 받아서 parameter 입력
-        controller.getUserData("1", new MyCallback() {
+        controller.getUserData(currentUser.getId(), new MyCallback() {
             @Override
             public void onSuccess(Object object) {
                 currentUser = (User) object;
                 Log.d("onSuccessGetUserDataEditProfile", currentUser.toString());
 
                 // 한글 이름 영문 이름 나누기
+                // firebase의 name에 "(한글 이름)/(영문 이름)" 으로 안 돼있으면 오류남 (테스트 시 참고)
                 String username = currentUser.getName();
                 String[] stSplit = username.split("/");
 
