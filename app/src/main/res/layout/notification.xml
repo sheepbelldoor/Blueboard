@@ -2,6 +2,7 @@
 <!-- Auto layout, variables, and unit scale are not yet supported -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profile_"
     android:layout_width="410dp"
     android:layout_height="750dp"
@@ -23,8 +24,17 @@
         android:textSize="48sp"
         android:textStyle="bold" />
 
-    <!--footer-->
+    <ListView
+        android:id="@+id/notificationList"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!--footer-->
     <Button
         android:id="@+id/icon_home"
         android:layout_width="50dp"
