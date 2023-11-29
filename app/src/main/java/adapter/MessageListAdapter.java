@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.se.blueboard.HomePage;
 import com.se.blueboard.MainActivity;
 import com.se.blueboard.MessageSendPage;
 import com.se.blueboard.MessageViewPage;
@@ -73,7 +74,7 @@ public class MessageListAdapter extends FirestoreRecyclerAdapter<Message, Messag
         SimpleDateFormat newFormat;
         FirebaseController controller = new FirebaseController();
         Log.d("onBindViewHolder: ", message.getId());
-        if(message.getSenderId().equals(MainActivity.loginUser.getId())){
+        if(message.getSenderId().equals(HomePage.currentUser.getId())){
             controller.getUserData(message.getReceiverId(), new MyCallback() {
                 @Override
                 public void onSuccess(Object object) {
@@ -121,7 +122,7 @@ public class MessageListAdapter extends FirestoreRecyclerAdapter<Message, Messag
         holder.subject.setText(message.getTitle());
         holder.date.setText(newFormat.format(message.getDate()));
         holder.content.setText(message.getContent());
-        if (message.getIsRead() == true || message.getSenderId().equals(MainActivity.loginUser.getId()))
+        if (message.getIsRead() == true || message.getSenderId().equals(HomePage.currentUser.getId()))
             holder.blueCircle.setVisibility(View.INVISIBLE);
         else
             holder.blueCircle.setVisibility(View.VISIBLE);
