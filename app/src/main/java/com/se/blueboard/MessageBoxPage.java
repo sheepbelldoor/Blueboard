@@ -59,11 +59,13 @@ public class MessageBoxPage extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        Log.d("current user", HomePage.currentUser.getId()+HomePage.currentUser.getName());
+
         // Options
         // default
         Query query = db.collection("messages").where(Filter.or(
-                Filter.equalTo("receiverId", MainActivity.loginUser.getId()),
-                Filter.equalTo("senderId", MainActivity.loginUser.getId())
+                Filter.equalTo("receiverId", HomePage.currentUser.getId()),
+                Filter.equalTo("senderId", HomePage.currentUser.getId())
         )).orderBy("date");
         FirestoreRecyclerOptions<Message> options = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(query, Message.class)
@@ -71,7 +73,7 @@ public class MessageBoxPage extends AppCompatActivity {
 
         // unread
         Query unreadQuery = db.collection("messages").where(Filter.and(
-                Filter.equalTo("receiverId", MainActivity.loginUser.getId()),
+                Filter.equalTo("receiverId", HomePage.currentUser.getId()),
                 Filter.equalTo("isRead", false)
         )).orderBy("date");
         FirestoreRecyclerOptions<Message> unReadOptions = new FirestoreRecyclerOptions.Builder<Message>()
@@ -80,14 +82,14 @@ public class MessageBoxPage extends AppCompatActivity {
 
         // receive
         Query receiveQuery = db.collection("messages")
-                .whereEqualTo("receiverId", MainActivity.loginUser.getId()).orderBy("date");
+                .whereEqualTo("receiverId", HomePage.currentUser.getId()).orderBy("date");
         FirestoreRecyclerOptions<Message> receiveOptions = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(receiveQuery, Message.class)
                 .build();
 
         // send
         Query sendQuery = db.collection("messages")
-                .whereEqualTo("senderId", MainActivity.loginUser.getId()).orderBy("date");
+                .whereEqualTo("senderId", HomePage.currentUser.getId()).orderBy("date");
         FirestoreRecyclerOptions<Message> sendOptions = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(sendQuery, Message.class)
                 .build();

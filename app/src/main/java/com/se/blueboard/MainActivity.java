@@ -2,6 +2,8 @@ package com.se.blueboard;
 
 import static android.content.ContentValues.TAG;
 
+import static com.se.blueboard.HomePage.currentUser;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -49,7 +51,6 @@ import utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
     private static Context context;
-    public static User loginUser;
     // 앱 실행시 권한 허가 필요
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         sent.add("2");
         List<String> received = new ArrayList<>();
         received.add("1");
-        loginUser = User.makeUser("abc1", "test22222", "짱구", "test", "test", "test", "test", courses, sent, received, null, 1, 1, 1);
+//        loginUser = User.makeUser("abc1", "test22222", "짱구", "test", "test", "test", "test", courses, sent, received, null, 1, 1, 1);
 
         // Firestore test
         Button firestoreButton = findViewById(R.id.firestore);
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             Message m2 = Message.makeMessage("2", "abc5", "abc2", "과제 제출", "과제 제출합니다.", new Date(), null, null, false);
             controller.sendMessageData(m2);
-            controller.sendUserData(loginUser);
+//            controller.sendUserData(loginUser);
             controller.sendUserData(user);
 
             // delete test
@@ -155,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
             controller.getUserData("abc1", new MyCallback() {
                 @Override
                 public void onSuccess(Object object) {
-                    loginUser = (User) object;
-                    Log.d("Main", loginUser.toString());
+                    currentUser = (User) object;
+                    Log.d("Main", currentUser.toString());
                     Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
                 }
 
