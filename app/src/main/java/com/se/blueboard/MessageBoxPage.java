@@ -64,8 +64,8 @@ public class MessageBoxPage extends AppCompatActivity {
         // Options
         // default
         Query query = db.collection("messages").where(Filter.or(
-                Filter.equalTo("receiverId", HomePage.currentUser.getId()),
-                Filter.equalTo("senderId", HomePage.currentUser.getId())
+                Filter.inArray("id", HomePage.currentUser.getReceivedMessages()),
+                Filter.inArray("id", HomePage.currentUser.getSentMessages())
         )).orderBy("date");
         FirestoreRecyclerOptions<Message> options = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(query, Message.class)
@@ -73,7 +73,7 @@ public class MessageBoxPage extends AppCompatActivity {
 
         // unread
         Query unreadQuery = db.collection("messages").where(Filter.and(
-                Filter.equalTo("receiverId", HomePage.currentUser.getId()),
+                Filter.inArray("id", HomePage.currentUser.getReceivedMessages()),
                 Filter.equalTo("isRead", false)
         )).orderBy("date");
         FirestoreRecyclerOptions<Message> unReadOptions = new FirestoreRecyclerOptions.Builder<Message>()
@@ -82,14 +82,14 @@ public class MessageBoxPage extends AppCompatActivity {
 
         // receive
         Query receiveQuery = db.collection("messages")
-                .whereEqualTo("receiverId", HomePage.currentUser.getId()).orderBy("date");
+                .whereIn("id", HomePage.currentUser.getReceivedMessages()).orderBy("date");
         FirestoreRecyclerOptions<Message> receiveOptions = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(receiveQuery, Message.class)
                 .build();
 
         // send
         Query sendQuery = db.collection("messages")
-                .whereEqualTo("senderId", HomePage.currentUser.getId()).orderBy("date");
+                .whereIn("id", HomePage.currentUser.getSentMessages()).orderBy("date");
         FirestoreRecyclerOptions<Message> sendOptions = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(sendQuery, Message.class)
                 .build();
@@ -136,26 +136,31 @@ public class MessageBoxPage extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query == null) {
+                if (query.equals("")) {
                     mAdapter.updateOptions(options);
                     recyclerView.setAdapter(mAdapter);
                 } else {
-                    Query searchQuery = db.collection("messages").where(Filter.or(
-                            Filter.equalTo("title", query),
-                            Filter.equalTo("senderId", query),
-                            Filter.equalTo("receiverId", query),
-                            Filter.equalTo("content", query)
-                    ));
+                    Query searchQuery = db.collection("messages").where(
+                            Filter.and(
+                                    Filter.or(Filter.inArray("id", HomePage.currentUser.getSentMessages()),
+                                            Filter.inArray("id", HomePage.currentUser.getReceivedMessages()))
+                                    ,Filter.or(
+                                            Filter.equalTo("title", query),
+                                            Filter.equalTo("senderId", query),
+                                            Filter.equalTo("receiverId", query),
+                                            Filter.equalTo("content", query)
+                    )));
                     FirestoreRecyclerOptions<Message> searchOptions = new FirestoreRecyclerOptions.Builder<Message>()
                             .setQuery(searchQuery, Message.class).build();
                     mAdapter.updateOptions(searchOptions);
                     recyclerView.setAdapter(mAdapter);
                 }
-                return false;
+                return true;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (newText.equals(""))
+                    this.onQueryTextSubmit("");
                 return false;
             }
         });
