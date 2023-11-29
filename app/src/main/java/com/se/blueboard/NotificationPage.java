@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 import adapter.NotificationAdapter;
 import model.Alarm;
-import model.Announcement;
 import utils.FirebaseController;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
