@@ -41,6 +41,8 @@ public class NotificationPage extends AppCompatActivity {
     private ListView listView;
     private NotificationAdapter adapter;
 
+    Utils util = Utils.makeUtils();
+
     @Override protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification);

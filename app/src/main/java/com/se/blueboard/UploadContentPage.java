@@ -146,7 +146,6 @@ public class UploadContentPage extends AppCompatActivity {
                 String alarmTitle = currentLecture.getName();
                 String alarmContent = "[" + format.getSelectedItem().toString() + "]" + title.getText().toString();
 
-                // lectureId, 알림 유형, receiverId -> 강의 듣는 수강자, senderId null, title 강의 이름, content [공지] 업로드 이름
                 Alarm alarm = Alarm.makeAlarm(currentLecture.getId(), format.getSelectedItem().toString(), null, null, alarmTitle, alarmContent, new Date());
                 controller.sendAlarmData(alarm);
 
