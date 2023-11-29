@@ -44,7 +44,7 @@ public class MessageViewPage extends AppCompatActivity {
                 // 삭제 버튼
                 Button delete = findViewById(R.id.icon_delete);
                 delete.setOnClickListener(view -> {
-                message.deleteMsg(message.getReceiverId()==MainActivity.loginUser.getId());
+                message.deleteMsg(message.getReceiverId()==HomePage.currentUser.getId());
                 });
 
                 // 답장 버튼
@@ -59,7 +59,7 @@ public class MessageViewPage extends AppCompatActivity {
                 title.setText(message.getTitle());
 
                 // 발신자 또는 수신자 이름
-                if(message.getReceiverId().equals(MainActivity.loginUser.getId())){
+                if(message.getReceiverId().equals(HomePage.currentUser.getId())){
                     // 발신자
                     controller.getUserData(message.getSenderId(), new MyCallback() {
                         @Override

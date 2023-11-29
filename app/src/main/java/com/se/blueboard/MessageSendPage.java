@@ -65,7 +65,7 @@ public class MessageSendPage extends AppCompatActivity {
                 String title = titleText.getText().toString();
                 String content = contentText.getText().toString();
 
-                String senderId = MainActivity.loginUser.getId();
+                String senderId = HomePage.currentUser.getId();
                 Date date = new Date();
 
                 Message message = Message.makeMessage(senderId + "-" + date.toString(), receiver.getId(), senderId, title, content, date,null, null, false);
