@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Alarm {
     // Fields
@@ -33,8 +34,13 @@ public class Alarm {
     }
 
     // Methods (If additional methods are needed for Alarm, add them here)
+    public static Alarm makeAlarm(String id, String type, String receiverId, String senderId,
+                                  String title, String content, Date date){
+        return new Alarm(id, type, receiverId, senderId, title, content, date);
 
+    }
     // getter
+    // id -> lectureId로 사용
     public String getId() {
         return id;
     }

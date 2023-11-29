@@ -70,7 +70,5 @@ public class AnnouncementAdapter extends BaseAdapter {
 
         return convertView;
 
-
-
     }
 }
