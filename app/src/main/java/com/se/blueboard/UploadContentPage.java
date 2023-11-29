@@ -15,13 +15,17 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
+import model.Alarm;
 import model.Announcement;
 import model.Assignment;
 import model.Exam;
@@ -137,6 +141,16 @@ public class UploadContentPage extends AppCompatActivity {
                 }
                 if (attachment != null)
                     controller.uploadFile(attachment);
+
+
+                String alarmTitle = currentLecture.getName();
+                String alarmContent = "[" + format.getSelectedItem().toString() + "]" + title.getText().toString();
+
+                // lectureId, 알림 유형, receiverId -> 강의 듣는 수강자, senderId null, title 강의 이름, content [공지] 업로드 이름
+                Alarm alarm = Alarm.makeAlarm(currentLecture.getId(), format.getSelectedItem().toString(), null, null, alarmTitle, alarmContent, new Date());
+                controller.sendAlarmData(alarm);
+
+
                 Utils.gotoPage(getApplicationContext(), ContentsPage.class, null);
             }
         });

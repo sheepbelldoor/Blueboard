@@ -50,17 +50,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/jpg_"
-            android:layout_width="200dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="112dp"
-            android:layout_marginTop="263dp"
-            android:text="프로필사진은 .jpg만 업로드 가능"
-            />
-
-        <TextView
             android:layout_width="60dp"
             android:layout_height="24dp"
             android:layout_alignParentLeft="true"

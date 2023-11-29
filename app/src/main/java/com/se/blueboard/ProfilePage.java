@@ -32,11 +32,12 @@ import utils.FirebaseController;
 import utils.MyCallback;
 import utils.Utils;
 
+import static com.se.blueboard.HomePage.currentUser;
+
+
 public class ProfilePage extends AppCompatActivity {
 
     FirebaseController controller = new FirebaseController();
-
-    public static User currentUser = User.makeUser();
 
     Utils util = Utils.makeUtils();
 
@@ -56,9 +57,7 @@ public class ProfilePage extends AppCompatActivity {
         Log.d("Bitmap", imgString);
 
         // image test
-
-        // TODO: LoginPage에서 id intent로 받아서 parameter 입력
-        controller.getUserData("1", new MyCallback() {
+        controller.getUserData(currentUser.getId(), new MyCallback() {
             @Override
             public void onSuccess(Object object) {
                 currentUser = (User) object;
