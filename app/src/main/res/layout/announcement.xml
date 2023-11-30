@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/announcement_header"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:fontFamily="@font/palanquindark_regular"
@@ -23,38 +22,37 @@
 
     <View
         android:id="@+id/line"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="7px"
         android:layout_centerInParent="true"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         android:background="#F3F3F3"
-        app:layout_constraintEnd_toEndOf="@+id/lecture_header"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/lecture_header"
-        app:layout_constraintTop_toBottomOf="@+id/lecture_header" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/announcement_header" />
 
     <SearchView
         android:id="@+id/announcement_search"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
-    </SearchView>
+        app:layout_constraintTop_toBottomOf="@+id/line" />
 
     <ListView
         android:id="@+id/announcementList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/announcement_search" />
 
@@ -63,11 +61,24 @@
         android:id="@+id/pen_button"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="right"
-        android:src="@drawable/icon_pen"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="10dp"
         android:background="@color/white"
-        />
+        android:src="@drawable/icon_pen"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent" />" />
 
-</LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="#FFFFFF"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
