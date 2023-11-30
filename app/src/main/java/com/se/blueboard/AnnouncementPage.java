@@ -6,6 +6,7 @@ import static utils.Utils.gotoPage;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,10 +16,12 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -110,6 +113,35 @@ public class AnnouncementPage extends AppCompatActivity {
             Utils.gotoPage(getApplicationContext(), UploadContentPage.class, null);
         });
 
+        // 하단바
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationBar);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        // 홈 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), HomePage.class, null);
+                        return true;
+
+                    case R.id.menu_Mail:
+                        // 메시지 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
+                        return true;
+
+                    case R.id.menu_Notification:
+                        // 알림 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), NotificationPage.class, null);
+                        return true;
+
+                    case R.id.menu_profile:
+                        // 프로필 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), ProfilePage.class, null);
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 

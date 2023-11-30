@@ -4,14 +4,21 @@ import static com.se.blueboard.makeLecture.MakeLecturePageOne.makingLecture;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.se.blueboard.HomePage;
+import com.se.blueboard.MessageBoxPage;
+import com.se.blueboard.NotificationPage;
+import com.se.blueboard.ProfilePage;
 import com.se.blueboard.R;
 
 import java.io.File;
@@ -55,6 +62,36 @@ public class MakeLecturePageTwo extends AppCompatActivity {
             makingLecture.setWeeks(weeks.getText().toString());
             makingLecture.setMaxStudents(maxUsers.getText().toString());
             Utils.gotoPage(getApplicationContext(), MakeLecturePageThree.class, null);
+        });
+
+        // 하단바
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationBar);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        // 홈 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), HomePage.class, null);
+                        return true;
+
+                    case R.id.menu_Mail:
+                        // 메시지 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), MessageBoxPage.class, null);
+                        return true;
+
+                    case R.id.menu_Notification:
+                        // 알림 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), NotificationPage.class, null);
+                        return true;
+
+                    case R.id.menu_profile:
+                        // 프로필 화면으로 이동
+                        Utils.gotoPage(getApplicationContext(), ProfilePage.class, null);
+                        return true;
+                }
+                return false;
+            }
         });
 
     }
