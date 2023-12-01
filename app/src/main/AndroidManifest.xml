@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Blueboard"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginPage"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Blueboard.NoActionBar">
@@ -36,7 +36,6 @@
         <activity android:name=".GroupsPopUp" />
         <activity android:name=".HomePage" />
         <activity android:name=".LecturePage" />
-        <activity android:name=".LoginPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".EditProfilePage" />
         <activity android:name=".NotificationPage" />

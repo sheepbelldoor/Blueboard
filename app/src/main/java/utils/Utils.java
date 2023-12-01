@@ -38,13 +38,10 @@ public class Utils implements Utilities {
 
     public static Utils makeUtils() {
         // named constructor
-        // TODO: implement
         return new Utils();
     }
 
     public boolean isAdmin(User user) {
-        // 관리자인지 확인
-        // TODO: implement
         // studentId는 사용자만 저장
         // studentId가 -1이면 관리자
         long studentId;
@@ -134,18 +131,13 @@ public class Utils implements Utilities {
 
     public void showErrMsg(Context context, String errorMessage) {
         // 에러 메시지 출력
-        // TODO: implement
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void pushAlarm(Context context, String channelId, int id, String title, String body) {
-
-    }
+    public void pushAlarm(Context context, String channelId, int id, String title, String body){}
 
     public void pushAlarm(Context context, String channelId, int id, String title, String body, PendingIntent pendingIndent) {
         // 푸시 알림 기능
-        // TODO: implement
         // 메시지 수신 알림, 댓글 수신 알림
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -172,14 +164,12 @@ public class Utils implements Utilities {
         }
 
         notificationManager.notify(id, builder.build());
-
     }
 
     public static String masking(String personalInfo) {
         // 개인정보 마스킹
         // 홍길동 -> 홍*동
         // 0123456789 -> 01*****789
-        // TODO: implement
         int length;
         int first, masked, end;
         String stars, maskedString;
@@ -227,11 +217,5 @@ public class Utils implements Utilities {
             //!!실제로 다음페이지로 넘어가는거 -> gotoPage()이용? or 페이지 textview 싹다지우고 ?
             pageItemCount = Math.max(0, pageItemCount - pageItemLimit);
         }
-
-
-
-
-
     }
-
 }
