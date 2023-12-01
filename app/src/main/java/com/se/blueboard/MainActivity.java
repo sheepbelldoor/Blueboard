@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // main screen (9 buttons)
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
         verifyStoragePermissions(this);
         FirebaseController controller = new FirebaseController();
         List<String> courses = new ArrayList<>();
