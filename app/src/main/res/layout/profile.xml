@@ -19,6 +19,10 @@
 
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
     <RelativeLayout
         android:id="@+id/profile_"
         android:layout_width="match_parent"
@@ -41,67 +45,29 @@
         android:textColor="#000000"
         android:visibility="gone"/>
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="146dp"
-        android:layout_height="146dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="133dp"
-        android:layout_marginTop="105dp"
-        android:layout_marginBottom="16dp"
-        android:clipToOutline="true"
-        />
-
-    <TextView
-        android:id="@+id/profile"
-        android:layout_width="150dp"
-        android:layout_height="54dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="39dp"
-        android:text="Profile"
-        android:textColor="#000000"
-        android:textSize="48sp"
-        android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/in"
-            android:layout_width="184dp"
-            android:layout_height="50dp"
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="146dp"
+            android:layout_height="146dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="119dp"
-            android:layout_marginTop="446dp"
-            android:text="@{in}"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="108dp"
+            android:layout_marginBottom="16dp"
+            android:clipToOutline="true" />
+
+        <TextView
+            android:id="@+id/profile"
+            android:layout_width="150dp"
+            android:layout_height="54dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="123dp"
+            android:layout_marginTop="39dp"
+            android:text="Profile"
             android:textColor="#000000"
+            android:textSize="48sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/studentId"
-            android:layout_width="200dp"
-            android:layout_height="25dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="119dp"
-            android:layout_marginTop="355dp"
-            android:text="@{studentId}"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:visibility="visible"/>
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="200dp"
-            android:layout_height="25dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="119dp"
-            android:layout_marginTop="330dp"
-            android:text="@{username}"
-            android:textColor="#000000"
-            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/mail"
@@ -109,9 +75,46 @@
             android:layout_height="29dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="122dp"
-            android:layout_marginTop="392dp"
+            android:layout_marginLeft="105dp"
+            android:layout_marginTop="384dp"
             android:text="@{email}" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="322dp"
+            android:text="@{username}"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/studentId"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="347dp"
+            android:text="@{studentId}"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/in"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="438dp"
+            android:text="@{in}"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <Button
         android:id="@+id/edit"
@@ -137,7 +140,8 @@
             app:menu="@menu/navigation_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </RelativeLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>
 
 
 
