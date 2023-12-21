@@ -5,165 +5,128 @@
 
     <data>
         <variable
-            name="originName"
+            name="username"
             type="String" />
         <variable
-            name="originEngName"
+            name="studentId"
             type="String" />
         <variable
-            name="originMail"
+            name="email"
             type="String" />
+        <variable
+            name="in"
+            type="String" />
+
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
     <RelativeLayout
-        android:id="@+id/edit_profile_"
+        android:id="@+id/profile_"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToOutline="true"
         android:background="#FFFFFF"
         >
 
+    <TextView
+        android:id="@+id/admin"
+        android:layout_width="56dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="318dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/box_border"
+        android:gravity="center"
+        android:text="관리자"
+        android:textColor="#000000"
+        android:visibility="gone"/>
+
         <ImageView
-            android:id="@+id/edit_image"
+            android:id="@+id/profile_image"
             android:layout_width="146dp"
             android:layout_height="146dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="126dp"
+            android:layout_marginLeft="120dp"
             android:layout_marginTop="108dp"
             android:layout_marginBottom="16dp"
-            android:clipToOutline="true"
-             />
+            android:clipToOutline="true" />
 
         <TextView
             android:id="@+id/profile"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="54dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="95dp"
-            android:layout_marginTop="42dp"
-            android:gravity="center"
-            android:text="개인정보 수정"
+            android:layout_marginLeft="123dp"
+            android:layout_marginTop="39dp"
+            android:text="Profile"
             android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="48sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="60dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="341dp"
-            android:text="한글 이름"
-            android:textSize="13sp" />
-
-
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="395dp"
-            android:text="영문 이름"
-            android:textSize="13sp" />
-
-        <EditText
-            android:id="@+id/edit_eng_name"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:id="@+id/mail"
+            android:layout_width="187dp"
+            android:layout_height="29dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="105dp"
-            android:layout_marginTop="383dp"
-            android:inputType="text"
-            android:hint="@{originEngName}"
-            android:privateImeOptions="defaultInputmode=english"
-            />
-
+            android:layout_marginTop="384dp"
+            android:text="@{email}" />
 
         <TextView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="46dp"
-            android:layout_marginTop="458dp"
-            android:text="메일"
-            android:textSize="13sp" />
-
-        <EditText
-            android:id="@+id/edit_mail"
+            android:id="@+id/name"
             android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="106dp"
-            android:layout_marginTop="435dp"
-            android:inputType="text"
-            android:hint="@{originMail}"
-            android:privateImeOptions="defaultInputmode=english" />
-
-        <Button
-            android:id="@+id/upload"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="280dp"
-            android:gravity="center"
-            android:text="사진 선택"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="322dp"
+            android:text="@{username}"
             android:textColor="#000000"
-            android:textSize="7sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/save"
+        <TextView
+            android:id="@+id/studentId"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="347dp"
+            android:text="@{studentId}"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/in"
             android:layout_width="184dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="108dp"
-            android:layout_marginTop="554dp"
-            android:gravity="center"
-            android:text="저장"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="102dp"
+            android:layout_marginTop="438dp"
+            android:text="@{in}"
             android:textColor="#000000"
-            android:textSize="15sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/edit_kor_name"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="106dp"
-            android:layout_marginTop="330dp"
-            android:inputType="text"
-            android:hint="@{originName}"
-            android:privateImeOptions="defaultInputmode=korean" />
-
-        <TextView
-            android:id="@+id/korlimit"
-            android:layout_width="100dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="157dp"
-            android:layout_marginTop="371dp"
-            android:text="20자까지 입력 가능"
-            android:textSize="10dp" />
-
-        <TextView
-            android:id="@+id/englimit"
-            android:layout_width="100dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="157dp"
-            android:layout_marginTop="424dp"
-            android:text="20자까지 입력 가능"
-            android:textSize="10dp" />
-
+        <Button
+        android:id="@+id/edit"
+        android:layout_width="184dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="554dp"
+        android:gravity="center"
+        android:text="개인정보 수정"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigationBar"
@@ -176,7 +139,9 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/navigation_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
-
     </RelativeLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>
+
+
 
